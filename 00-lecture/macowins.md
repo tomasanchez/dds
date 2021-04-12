@@ -73,14 +73,35 @@ Luego, siguiendo la lógica de nuestros objetos planteados...
 Los cálculos serían
 
 ```js
-Ventas
-    .( agruparPorFecha ) // No considero necesario desglosar esta función
-    .map( agrupacion =>
-            /* Asumo cada agrupacion como si fuera:
+coeficienteFijo;
+
+class Venta {
+  prendas;
+  cuotasTarjeta;
+  subtotal;
+
+  descuentos() {
+    return this.prendas.reduce((prenda) => prenda.descuento(), 0);
+  }
+  ganancia() {
+    return this.prendas.reduce((prenda) => prenda.ganancia(), 0);
+  }
+  // Asumo que ganancia no incluye los recargos
+  total() {
+    return ganancia() + confirmarPago();
+  }
+  confirmarPago() {
+    return this.cuotas * coeficienteFijo + 0.1 * this.subTotal;
+  }
+}
+
+agruparPorFecha(Ventas) // No considero necesario desglosar esta función
+  .map((agrupacion) =>
+    /* Asumo cada agrupacion como si fuera:
             agrupacion = [Venta0, Venta1, ...]
             Nótese que esta función la describo para demostrar el uso del método ganancia() */
-            agrupacion.reduce( Venta => Venta.ganancia())
-        );
+    agrupacion.reduce((Venta) => Venta.ganancia(), 0)
+  );
 ```
 
 Con detalle por Venta que mostraría el detalle de cada `posición` de cada venta.
@@ -129,7 +150,7 @@ class Prenda {
   estado;
   //...
   ganancia() {
-    return estado.obtenerPrecio(this.precioBase, this.descuentoManual);
+    return estado.obtenerPrecio(this.precio, this.descuentoManual);
   }
 }
 ```
