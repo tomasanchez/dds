@@ -21,6 +21,11 @@ interface ModificadorDePrecio {
 public class Estado {
 
     /**
+     * Código de estado.
+     */
+    Status estado;
+
+    /**
      * Nombre del estado
      */
     String nombre;
@@ -38,14 +43,16 @@ public class Estado {
     /**
      * Crea una instancia de un estado.
      * 
+     * @param status - el codigo de estado
      * @param estado - el nombre del estado
      * @param desc   - la descripcion del mismo
      * @param mod    - funcion modificadora de precio
      */
-    public Estado(String estado, String desc, ModificadorDePrecio mod) {
+    public Estado(Status status, String nombreEstado, String desc, ModificadorDePrecio mod) {
         modificador = mod;
-        nombre = estado;
+        nombre = nombreEstado;
         descripcion = desc;
+        estado = status;
     }
 
     /**
