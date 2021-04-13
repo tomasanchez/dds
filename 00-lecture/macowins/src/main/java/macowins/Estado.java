@@ -60,7 +60,7 @@ public class Estado {
      * 
      * @param precioBase - precio sin descuentos
      * @param descuento  - descuentos a realizar
-     * @return
+     * @return el precio final con descuentos
      */
     public double obtenerPrecio(double precioBase, double descuento) {
         return modificador.modificar(precioBase, descuento);
