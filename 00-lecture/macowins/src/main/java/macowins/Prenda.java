@@ -96,30 +96,24 @@ public class Prenda {
     }
 
     /**
-     * Modifica el estado a promoción y guarda el descuento.
+     * Prendas del negocio, especificando cantidad
      * 
-     * @param dcto - el descuento promocionado, puede ser porcentual
+     * @param idPrenda   - el nro de prenda.
+     * @param tipoPrenda - el tipo de prenda.
+     * @param cant       - la cantidad de items.
+     * @param precioBase - el precio base de la prenda.
      */
-    public void promocionar(double dcto) {
-        // Al asignar un descuento crea la promocion
-        estado = promocion;
-        // Acepta descuentos porcentuales %
-        dctoPromocion = dcto < 1 ? dcto * precio : dcto;
-        descuentos = dctoPromocion;
-    }
+    public Prenda(String idPrenda, String tipoPrenda, int cant, double precioBase) {
 
-    public void liquidar() {
-        estado = liquidacion;
-        descuentos = estado.obtenerPrecio(precio, 0);
-    }
+        cantidad = cant;
 
-    /**
-     * Modifica los recargos que tiene una prenda.
-     * 
-     * @param cuotas - cantidad de cuotas que se realiza el pago.
-     */
-    private void pagoEnCuotas(int cuotas) {
-        recargos = coeficienteDeRecargo * cuotas + 0.01 * ganancia();
+        nroDePrenda = idPrenda;
+
+        precio = precioBase;
+
+        estado = nuevo;
+
+        tipo = tipoPrenda;
     }
 
     /**
@@ -148,11 +142,56 @@ public class Prenda {
     }
 
     /**
+     * Modifica el estado a promoción y guarda el descuento.
+     * 
+     * @param dcto - el descuento promocionado, puede ser porcentual
+     */
+    public Prenda promocionar(double dcto) {
+        // Al asignar un descuento crea la promocion
+        estado = promocion;
+        // Acepta descuentos porcentuales %
+        dctoPromocion = dcto < 1 ? dcto * precio * cantidad : dcto;
+        descuentos = dctoPromocion;
+        return this;
+    }
+
+    public Prenda liquidar() {
+        estado = liquidacion;
+        descuentos = estado.obtenerPrecio(precio, 0);
+        return this;
+    }
+
+    /**
+     * Modifica los recargos que tiene una prenda.
+     * 
+     * @param cuotas - cantidad de cuotas que se realiza el pago.
+     */
+    private void pagoEnCuotas(int cuotas) {
+        recargos = coeficienteDeRecargo * cuotas + 0.01 * ganancia();
+    }
+
+    /**
+     * Informa el estado de la prenda.
+     * 
+     * @return el estado actual que tiene la prenda.
+     */
+    public Status estado() {
+        return estado.estado;
+    }
+
+    /**
+     * Agrega un item mas de este tipo
+     */
+    public void agregarItem() {
+        cantidad++;
+    }
+
+    /**
      * 
      * @return El precio con descuentos.
      */
     public double ganancia() {
-        return estado.obtenerPrecio(precio, dctoPromocion);
+        return estado.obtenerPrecio(precio, dctoPromocion) * cantidad;
     }
 
     /**
