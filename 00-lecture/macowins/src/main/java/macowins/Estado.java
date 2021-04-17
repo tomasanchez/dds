@@ -7,6 +7,7 @@ package macowins;
  * @version 1.0
  * @since 04.13.2021
  */
+@FunctionalInterface
 interface ModificadorDePrecio {
     double modificar(double precioBase, double descuento);
 }
