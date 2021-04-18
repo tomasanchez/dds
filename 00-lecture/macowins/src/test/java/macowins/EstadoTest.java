@@ -12,42 +12,48 @@ import org.junit.jupiter.api.Assertions;
  */
 public class EstadoTest {
 
-    private static final double precioSuperElevado = 1999.99;
-    private static final double precioElevado = 999.99;
-    private static final double precioModerado = 499.99;
-    private static final double precioBarato = 199.99;
+        private static final double precioSuperElevado = 1999.99;
+        private static final double precioElevado = 999.99;
+        private static final double precioModerado = 499.99;
+        private static final double precioBarato = 199.99;
 
-    private static final double descuentoNada = 0.0;
-    private static final double descuentoImportante = 200.0;
-    private static final double descuentoModerado = 50.0;
-    private static final double descuentoChico = 10;
+        private static final double descuentoNada = 0.0;
+        private static final double descuentoImportante = 200.0;
+        private static final double descuentoModerado = 50.0;
+        private static final double descuentoChico = 10;
 
-    @Test
-    public void estadoNuevo() {
+        @Test
+        public void estadoNuevo() {
 
-        Assertions.assertEquals(precioElevado, Estado.nuevo.precio(precioElevado, descuentoModerado));
-        Assertions.assertEquals(precioModerado, Estado.nuevo.precio(precioModerado, descuentoChico));
-        Assertions.assertEquals(precioBarato, Estado.nuevo.precio(precioBarato, descuentoNada));
-        Assertions.assertEquals(precioSuperElevado, Estado.nuevo.precio(precioSuperElevado, descuentoImportante));
-    }
+                Assertions.assertEquals(precioElevado, TipoEstado.nuevo.precio(precioElevado, descuentoModerado));
+                Assertions.assertEquals(precioModerado, TipoEstado.nuevo.precio(precioModerado, descuentoChico));
+                Assertions.assertEquals(precioBarato, TipoEstado.nuevo.precio(precioBarato, descuentoNada));
+                Assertions.assertEquals(precioSuperElevado,
+                                TipoEstado.nuevo.precio(precioSuperElevado, descuentoImportante));
+        }
 
-    @Test
-    public void estadoPromocion() {
-        Assertions.assertEquals(precioElevado - descuentoNada, Estado.promocion.precio(precioElevado, descuentoNada));
-        Assertions.assertEquals(precioModerado - descuentoChico,
-                Estado.promocion.precio(precioModerado, descuentoChico));
-        Assertions.assertEquals(precioBarato - descuentoModerado,
-                Estado.promocion.precio(precioBarato, descuentoModerado));
-        Assertions.assertEquals(precioSuperElevado - descuentoImportante,
-                Estado.promocion.precio(precioSuperElevado, descuentoImportante));
-    }
+        @Test
+        public void estadoPromocion() {
+                Assertions.assertEquals(precioElevado - descuentoNada,
+                                TipoEstado.promocion.precio(precioElevado, descuentoNada));
+                Assertions.assertEquals(precioModerado - descuentoChico,
+                                TipoEstado.promocion.precio(precioModerado, descuentoChico));
+                Assertions.assertEquals(precioBarato - descuentoModerado,
+                                TipoEstado.promocion.precio(precioBarato, descuentoModerado));
+                Assertions.assertEquals(precioSuperElevado - descuentoImportante,
+                                TipoEstado.promocion.precio(precioSuperElevado, descuentoImportante));
+        }
 
-    @Test
-    public void estadoLiquidacion() {
-        Assertions.assertEquals(precioElevado * 0.5, Estado.liquidacion.precio(precioElevado, descuentoModerado));
-        Assertions.assertEquals(precioBarato * 0.5, Estado.liquidacion.precio(precioBarato, descuentoImportante));
-        Assertions.assertEquals(precioModerado * 0.5, Estado.liquidacion.precio(precioModerado, descuentoChico));
-        Assertions.assertEquals(precioSuperElevado * 0.5, Estado.liquidacion.precio(precioSuperElevado, descuentoNada));
-    }
+        @Test
+        public void estadoLiquidacion() {
+                Assertions.assertEquals(precioElevado * 0.5,
+                                TipoEstado.liquidacion.precio(precioElevado, descuentoModerado));
+                Assertions.assertEquals(precioBarato * 0.5,
+                                TipoEstado.liquidacion.precio(precioBarato, descuentoImportante));
+                Assertions.assertEquals(precioModerado * 0.5,
+                                TipoEstado.liquidacion.precio(precioModerado, descuentoChico));
+                Assertions.assertEquals(precioSuperElevado * 0.5,
+                                TipoEstado.liquidacion.precio(precioSuperElevado, descuentoNada));
+        }
 
 }

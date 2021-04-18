@@ -1,5 +1,7 @@
 package macowins;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -7,116 +9,93 @@ import org.junit.jupiter.api.Test;
  * Pruebas de Prendas.
  *
  * @author Tomás Sánchez
- * @version 1.0
- * @since 04.13.2021
+ * @version 2.0
+ * @since 04.18.2021
  */
 public class PrendaTest {
 
-    private static final long idVenta = 1233214;
-    private static final int cuotas = 3;
-    private static final double coeficienteDeRecargo = 25.5;
+    private static final double precioCarisimo = 1999.99;
+    private static final double precioCaro = 999.99;
+    private static final double precioNormal = 499.99;
+    private static final double precioBarato = 199.99;
+    private static final double sinPrecio = 0.0;
 
-    private static Prenda nuevaCampera(double precioBase) {
-        return new Prenda("JK000000010A", "Campera de Jean", precioBase);
-    }
+    private static final double descuentoImportante = 200.0;
+    private static final double descuentoModerado = 50.0;
+    private static final double liquidacion = 0.5;
+    private static final double descuentoNada = 0.0;
 
-    private static Prenda nuevoJean(double precioBase) {
-        return new Prenda("JP000000010A", "Pantalón de Jean", precioBase);
+    @Test
+    public void prendaSinPrecio() {
+        // No se deberian crear prendas sin precio, o precio negativo
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Prenda(sinPrecio, Tipo.CAMISA);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Prenda(-precioCaro, Tipo.PANTALON);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Prenda(-0.01, Tipo.SACO);
+        });
     }
 
     @Test
-    public void estadosDePrenda() {
-        double precioBase = 900;
-        Prenda campera = nuevaCampera(precioBase);
-        // La prenda debe ser nueva. y la ganacia el precio base
-        Assertions.assertEquals(Status.NUEVO, campera.estado.estado);
-        Assertions.assertEquals(precioBase, campera.ganancia());
-        // Una vez liquidada, aplica descuento de 450 y el estado es liquidada
-        campera.liquidar();
-        Assertions.assertEquals(Status.LIQ, campera.estado.estado);
-        Assertions.assertEquals(precioBase * 0.5, campera.ganancia());
-        // Si se pone en promoción, debe tener descuento otorgado
-        double dcto = 100;
-        campera.promocionar(dcto);
-        Assertions.assertEquals(Status.PROMO, campera.estado.estado);
-        Assertions.assertEquals(precioBase - dcto, campera.ganancia());
+    public void descuentoHaceGratis() {
+        // No se deberian crear prendas sin precio, o precio negativo
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Prenda(sinPrecio, descuentoNada, Tipo.CAMISA);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Prenda(precioBarato, 2 * precioBarato, Tipo.PANTALON);
+        });
+        // Tampoco serian valido...
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Prenda(precioBarato, -2 * precioBarato, Tipo.SACO);
+        });
     }
 
     @Test
-    public void ventaPrendaNueva() {
-        double precioBase = 300;
-        Prenda pantalon = nuevoJean(precioBase);
-        // Al venderse, el total abonado es el precio base.
-        pantalon.vender(idVenta);
-        Assertions.assertEquals(precioBase, pantalon.total);
+    public void prendaNueva() {
+        Prenda pantalon = new Prenda(precioCarisimo, Tipo.PANTALON);
+        Prenda camisa = new Prenda(precioCaro, Tipo.CAMISA);
+        Prenda saco = new Prenda(precioNormal, Tipo.SACO);
+        // El estado debe ser nuevo
+        Assertions.assertEquals(TipoEstado.nuevo, pantalon.estado);
+        Assertions.assertEquals(TipoEstado.nuevo, camisa.estado);
+        Assertions.assertEquals(TipoEstado.nuevo, saco.estado);
+        // Los precios deben ser exactamente los precios base seteados.
+        Assertions.assertEquals(precioCarisimo, pantalon.precio());
+        Assertions.assertEquals(precioCaro, camisa.precio());
+        Assertions.assertEquals(precioNormal, saco.precio());
     }
 
     @Test
-    public void ventaPrendaNuevaCuotas() {
-        double precioBase = 375;
-        Prenda pantalon = nuevoJean(precioBase);
-        // Al venderse, en cuotas, el total abonado es el precio base + recargos
-
-        double recargos = coeficienteDeRecargo * cuotas + 0.01 * pantalon.ganancia();
-        pantalon.vender(idVenta, cuotas);
-        Assertions.assertEquals(precioBase + recargos, pantalon.total);
+    public void prendaPromo() {
+        Prenda pantalon = new Prenda(precioCarisimo, descuentoNada, Tipo.PANTALON);
+        Prenda camisa = new Prenda(precioCaro, descuentoModerado, Tipo.CAMISA);
+        Prenda saco = new Prenda(precioNormal, descuentoImportante, Tipo.SACO);
+        // El estado debe ser promoción
+        Assertions.assertEquals(TipoEstado.promocion, pantalon.estado);
+        Assertions.assertEquals(TipoEstado.promocion, camisa.estado);
+        Assertions.assertEquals(TipoEstado.promocion, saco.estado);
+        // El precio final debe ser el precio base - el descuento.
+        Assertions.assertEquals(precioCarisimo - descuentoNada, pantalon.precio());
+        Assertions.assertEquals(precioCaro - descuentoModerado, camisa.precio());
+        Assertions.assertEquals(precioNormal - descuentoImportante, saco.precio());
     }
 
     @Test
-    public void ventaPrendaPromo() {
-        double precioBase = 450;
-        Prenda pantalon = nuevoJean(precioBase);
-        // Descontando un 15%
-        double dcto = 0.15;
-        pantalon.promocionar(dcto);
-        Assertions.assertEquals(precioBase * dcto, pantalon.descuentos);
-        Assertions.assertEquals(precioBase - precioBase * dcto, pantalon.ganancia());
-        // Al venderse, el precio total es unicamente el precio + descuento
-        pantalon.vender(idVenta);
-        Assertions.assertEquals(precioBase - precioBase * dcto, pantalon.total);
-    }
-
-    @Test
-    public void ventaPrendaPromoCuotas() {
-        double precioBase = 550;
-        Prenda campera = nuevoJean(precioBase);
-        // Descontando $100
-        double dcto = 100;
-        campera.promocionar(dcto);
-        Assertions.assertEquals(dcto, campera.descuentos);
-        Assertions.assertEquals(precioBase - dcto, campera.ganancia());
-        // Al venderse, en cuotas, el total abonado es el
-        // precio base + recargos - descuentos
-        double recargos = coeficienteDeRecargo * cuotas + 0.01 * campera.ganancia();
-        campera.vender(idVenta, cuotas);
-        Assertions.assertEquals(precioBase - dcto + recargos, campera.total);
-    }
-
-    @Test
-    public void ventaPrendaLiq() {
-        double precioBase = 1000;
-        Prenda campera = nuevaCampera(precioBase);
-        // Liquidar = 50% off
-        campera.liquidar();
-        Assertions.assertEquals(precioBase / 2, campera.descuentos);
-        Assertions.assertEquals(precioBase / 2, campera.ganancia());
-        // Al venderse el total abonado es el 50% del precio
-        campera.vender(idVenta);
-        Assertions.assertEquals(precioBase / 2, campera.total);
-    }
-
-    @Test
-    public void ventaPrendaLiqCuotas() {
-        double precioBase = 1899.99;
-        Prenda campera = nuevaCampera(precioBase);
-        // Liquidar = 50% off
-        campera.liquidar();
-        Assertions.assertEquals(precioBase / 2, campera.descuentos);
-        Assertions.assertEquals(precioBase / 2, campera.ganancia());
-        // Al venderse, en cuotas, el total abonado es el
-        // precio base /2 + recargos
-        double recargos = coeficienteDeRecargo * cuotas + 0.01 * campera.ganancia();
-        campera.vender(idVenta, cuotas);
-        Assertions.assertEquals(precioBase / 2 + recargos, campera.total);
+    public void prendaLiquiacion() {
+        Prenda pantalon = new Prenda(precioCarisimo, liquidacion, Tipo.PANTALON);
+        Prenda camisa = new Prenda(precioCaro, liquidacion, Tipo.CAMISA);
+        Prenda saco = new Prenda(precioNormal, liquidacion, Tipo.SACO);
+        // El estado debe ser liquidación
+        Assertions.assertEquals(TipoEstado.liquidacion, pantalon.estado);
+        Assertions.assertEquals(TipoEstado.liquidacion, camisa.estado);
+        Assertions.assertEquals(TipoEstado.liquidacion, saco.estado);
+        // El precio debe ser la mitad del base.
+        Assertions.assertEquals(precioCarisimo / 2, pantalon.precio());
+        Assertions.assertEquals(precioCaro / 2, camisa.precio());
+        Assertions.assertEquals(precioNormal / 2, saco.precio());
     }
 }
