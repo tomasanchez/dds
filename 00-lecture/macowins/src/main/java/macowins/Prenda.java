@@ -4,7 +4,7 @@ package macowins;
  * Ventas representa el detalle de venta, por prenda
  *
  * @author Tomás Sánchez
- * @version 2.2
+ * @version 3.0
  * @since 04.18.2021
  */
 public class Prenda {
@@ -33,10 +33,10 @@ public class Prenda {
     /**
      * El estado de la prenda, según el dominio
      * 
-     * @since 2.0
+     * @since 3.0
      * 
      */
-    public final Status estado;
+    public final Estado estado;
 
     /**
      * Calcula el precio total de una prenda.
@@ -53,7 +53,7 @@ public class Prenda {
      * 
      * @param base       - el precio base
      * @param tipoPrenda - el tipo de la prenda
-     * @since 2.1
+     * @since 3.0
      */
     public Prenda(double base, Tipo tipoPrenda) {
 
@@ -62,7 +62,7 @@ public class Prenda {
 
         precioBase = base;
         descuentos = 0;
-        estado = Estado.nuevo;
+        estado = TipoEstado.nuevo;
         tipo = tipoPrenda;
     }
 
@@ -72,7 +72,7 @@ public class Prenda {
      * @param base       - el precion original
      * @param dcto       - el descuento aplicado
      * @param tipoPrenda - el tipo de la prenda
-     * @since 2.2
+     * @since 3.0
      */
     public Prenda(double base, double dcto, Tipo tipoPrenda) {
 
@@ -81,7 +81,7 @@ public class Prenda {
 
         precioBase = base;
         descuentos = dcto > 0 && dcto < 1 ? base * dcto : Math.abs(dcto);
-        estado = precioBase - descuentos == precioBase * 0.5 ? Estado.liquidacion : Estado.promocion;
+        estado = precioBase - descuentos == precioBase * 0.5 ? TipoEstado.liquidacion : TipoEstado.promocion;
         tipo = tipoPrenda;
     }
 
