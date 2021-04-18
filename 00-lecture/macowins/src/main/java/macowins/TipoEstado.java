@@ -1,16 +1,16 @@
 package macowins;
 
 /**
- * Status
+ * Estado
  *
  * @author Tomás Sánchez
  * @version 2.0
  * @since 18.04.2021
  */
 @FunctionalInterface
-interface Status {
+interface Estado {
     /**
-     * Obtiene el precio final de acuerdo a un estado.
+     * Obtiene el precio final de acuerdo a un TipoEstado
      * 
      * @param precioBase - el precio base.
      * @param descuento  - el descuento aplicado
@@ -27,26 +27,26 @@ interface Status {
  * @version 2.0
  * @since 04.18.2021
  */
-public class Estado {
+public class TipoEstado {
 
     /**
      * Estado nuevo, no modifica el precio base de la prenda.
      * 
      * @since 2.0
      */
-    static Status nuevo = ((p, d) -> p);
+    static Estado nuevo = ((p, d) -> p);
 
     /**
      * Estado promocion, resta al precio base el descuento, o aplica % de dcto.
      * 
      * @since 2.0
      */
-    static Status promocion = ((p, d) -> d > 0 && d < 1 ? p * d : p - d);
+    static Estado promocion = ((p, d) -> d > 0 && d < 1 ? p * d : p - d);
 
     /**
      * Estado liquidacion, 50% off
      * 
      * @since 2.0
      */
-    static Status liquidacion = ((p, d) -> p * 0.5);
+    static Estado liquidacion = ((p, d) -> p * 0.5);
 }
