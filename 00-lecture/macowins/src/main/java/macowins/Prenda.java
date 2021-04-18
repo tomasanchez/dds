@@ -4,7 +4,7 @@ package macowins;
  * Ventas representa el detalle de venta, por prenda
  *
  * @author Tomás Sánchez
- * @version 2.1
+ * @version 2.2
  * @since 04.18.2021
  */
 public class Prenda {
@@ -72,15 +72,15 @@ public class Prenda {
      * @param base       - el precion original
      * @param dcto       - el descuento aplicado
      * @param tipoPrenda - el tipo de la prenda
-     * @since 2.1
+     * @since 2.2
      */
     public Prenda(double base, double dcto, Tipo tipoPrenda) {
 
-        if (base - dcto <= 0)
+        if (base - Math.abs(dcto) <= 0)
             throw new IllegalArgumentException("El precio base de la Prenda no puede ser menor o igual al descueto.");
 
         precioBase = base;
-        descuentos = dcto > 0 && dcto < 1 ? base * dcto : dcto;
+        descuentos = dcto > 0 && dcto < 1 ? base * dcto : Math.abs(dcto);
         estado = precioBase - descuentos == precioBase * 0.5 ? Estado.liquidacion : Estado.promocion;
         tipo = tipoPrenda;
     }
