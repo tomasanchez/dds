@@ -1,69 +1,29 @@
 package macowins;
 
 /**
- * Modificador de Precio es utilizado para expresiones lambda.
+ * Status
  *
  * @author Tomás Sánchez
- * @version 1.0
- * @since 04.13.2021
+ * @version 2.0
+ * @since 18.04.2021
  */
 @FunctionalInterface
-interface ModificadorDePrecio {
-    double modificar(double precioBase, double descuento);
+interface Status {
+    double precio(double precioBase, double descuento);
 }
 
 /**
  * Estado representa el estado que puede tener una prenda.
  *
  * @author Tomás Sánchez
- * @version 1.0
+ * @version 2.0
  * @since 04.13.2021
  */
 public class Estado {
-
-    /**
-     * Código de estado.
-     */
-    Status estado;
-
-    /**
-     * Nombre del estado
-     */
-    String nombre;
-
-    /**
-     * Breve descripcion del estado.
-     */
-    String descripcion;
-
-    /**
-     * Funcion lambda modificadora de precio
-     */
-    private ModificadorDePrecio modificador;
-
-    /**
-     * Crea una instancia de un estado.
-     * 
-     * @param status - el codigo de estado
-     * @param estado - el nombre del estado
-     * @param desc   - la descripcion del mismo
-     * @param mod    - funcion modificadora de precio
-     */
-    public Estado(Status status, String nombreEstado, String desc, ModificadorDePrecio mod) {
-        modificador = mod;
-        nombre = nombreEstado;
-        descripcion = desc;
-        estado = status;
-    }
-
-    /**
-     * Obtiene el precio total de una prenda.
-     * 
-     * @param precioBase - precio sin descuentos
-     * @param descuento  - descuentos a realizar
-     * @return el precio final con descuentos
-     */
-    public double obtenerPrecio(double precioBase, double descuento) {
-        return modificador.modificar(precioBase, descuento);
-    }
+    // Estado nuevo, no modifica el precio base de la prenda.
+    static Status nuevo = ((p, d) -> p);
+    // Estado promocion, resta al precio base el descuento, o aplica % de dcto.
+    static Status promocion = ((p, d) -> d > 0 && d < 1 ? p * d : p - d);
+    // Estado liquidacion, 50% off
+    static Status liquidacion = ((p, d) -> p * 0.5);
 }
