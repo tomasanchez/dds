@@ -11,21 +11,30 @@ public class Prenda {
 
     /**
      * El precio sin descuentos de la prenda
+     * 
+     * @since 1.0
      */
     public final double precioBase;
 
     /**
      * El tipo de prenda segun el dominio
+     * 
+     * @since 2.0
      */
     public final Tipo tipo;
 
     /**
      * Los descuentos manuales de la prenda
+     * 
+     * @since 1.0
      */
     public final double descuentos;
 
     /**
      * El estado de la prenda, según el dominio
+     * 
+     * @since 2.0
+     * 
      */
     public final Status estado;
 
@@ -33,6 +42,7 @@ public class Prenda {
      * Calcula el precio total de una prenda.
      * 
      * @return el precio final de la prenda, según su estado
+     * @since 2.0
      */
     public double precio() {
         return estado.precio(precioBase, descuentos);
@@ -43,6 +53,7 @@ public class Prenda {
      * 
      * @param base       - el precio base
      * @param tipoPrenda - el tipo de la prenda
+     * @since 2.0
      */
     public Prenda(double base, Tipo tipoPrenda) {
         precioBase = base;
@@ -57,6 +68,7 @@ public class Prenda {
      * @param base       - el precion original
      * @param dcto       - el descuento aplicado
      * @param tipoPrenda - el tipo de la prenda
+     * @since 2.0
      */
     public Prenda(double base, double dcto, Tipo tipoPrenda) {
         precioBase = base;
