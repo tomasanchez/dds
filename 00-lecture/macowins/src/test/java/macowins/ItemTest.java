@@ -4,6 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.Assertions;
 
+/**
+ * Pruebas de Items.
+ *
+ * @author Tomás Sánchez
+ * @version 1.0
+ * @since 04.18.2021
+ */
 public class ItemTest {
 
     // Cantidades
