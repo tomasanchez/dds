@@ -1,137 +1,90 @@
 package macowins;
 
 import java.time.LocalDate; // import the LocalDate class
-import java.util.ArrayList; // Fpr Collection
-import java.util.Optional; // For Array Iteration
-import java.util.Random; // Import the Random generator
+import java.util.ArrayList; // for collection
 
 /**
  * Ventas representa la cabecera de las ventas realizadas en Maco Wins.
  *
  * @author Tomás Sánchez
- * @version 1.0
- * @since 04.12.2021
+ * @version 2.0
+ * @since 04.18.2021
  */
 public class Venta {
-    /**
-     * Número de venta
-     */
-    final long nroDeVenta;
-    /**
-     * Cantidad de items de la venta
-     */
-    int items;
-    /**
-     * Número de Cliente, o DNI.
-     */
-    final String nroDeDeudor;
+
     /**
      * Fecha de venta.
+     * 
+     * @since 1.0
      */
-    LocalDate fecha;
+    public LocalDate fecha;
 
     /**
-     * Listado de Prendas
+     * Listado de Items de prendas
+     * 
+     * @since 2.0
      */
-    ArrayList<Prenda> prendas;
+    ArrayList<Item> items;
 
     /**
-     * Total del Precio Base de cada item.
+     * Coeficiente de recargo para el medio de pago
+     * 
+     * @since 1.0
      */
-    double subtotal;
-    /**
-     * Total de descuentos realizados
-     */
-    double descuentos;
-    /**
-     * Recargos por pago con targeta de crédito.
-     */
-    double recargos;
-    /**
-     * Total abonado.
-     */
-    double total;
+    public final double coeficienteDeRecargo;
 
     /**
-     * @param deudor - el cliente que realizón la compra
+     * Cantidad de cuotas en las que se abona
+     * 
+     * @since 1.0
      */
-    public Venta(String deudor) {
+    public final int cuotas;
 
-        Random rand = new Random();
-        prendas = new ArrayList<Prenda>();
-        nroDeVenta = Math.abs(rand.nextLong());
-        nroDeDeudor = deudor;
+    /**
+     * Medio de pago
+     * 
+     * @since 2.0
+     */
+    public final Pago medio;
+
+    /**
+     * Obtiene el precio final
+     * 
+     * @return el precio final segun el medio de pago
+     * @since 2.0
+     */
+    public double precio() {
+
+        double total = items.stream().mapToDouble(item -> item.precio()).sum();
+
+        return medio.precio(total, coeficienteDeRecargo, cuotas);
+    }
+
+    /**
+     * Genera una venta en efectivo segun un carrito de prendas.
+     * 
+     * @since 2.0
+     */
+    public Venta(ArrayList<Item> carrito) {
+
         fecha = LocalDate.now();
+        items = carrito;
+        coeficienteDeRecargo = 0;
+        medio = TipoPago.efectivo;
+        cuotas = 1;
     }
 
-    /**
-     * Genera una venta segun un carrito.
-     * 
-     * @param deudor  - el cliente que realizón la compra
-     * @param carrito - las prendas vendidas
-     */
-    public Venta(String deudor, ArrayList<Prenda> carrito) {
+    public Venta(ArrayList<Item> carrito, double recargo, int cuantasCuotas) {
 
-        Random rand = new Random();
-        nroDeVenta = Math.abs(rand.nextLong());
-        nroDeDeudor = deudor;
+        if (cuantasCuotas <= 0)
+            throw new IllegalArgumentException("Las cuotas deben ser mayores a 0");
+
         fecha = LocalDate.now();
-        prendas = new ArrayList<Prenda>();
-
-        if (!carrito.isEmpty()) {
-            carrito.forEach(prenda -> agregarPrenda(prenda));
-            subtotal = carrito.stream().mapToDouble(p -> p.precio).sum();
-        }
-    }
-
-    /**
-     * Calcula contables y vende las prendas.
-     */
-    public void vender() {
-
-        prendas.forEach(prenda -> prenda.vender(nroDeVenta));
-        subtotal = prendas.stream().mapToDouble(prenda -> prenda.precio).sum();
-        total = prendas.stream().mapToDouble(prenda -> prenda.total).sum();
-        recargos = 0;
-        descuentos = prendas.stream().mapToDouble(prenda -> prenda.descuentos).sum();
-
-    }
-
-    /**
-     * Calcula contables y vende las prendas en las cuotas indicadas
-     * 
-     * @param cuotas - las cuotas en las que se financia la venta
-     */
-    public void vender(int cuotas) {
-
-        prendas.forEach(prenda -> prenda.vender(nroDeVenta, cuotas));
-        subtotal = prendas.stream().mapToDouble(prenda -> prenda.precio).sum();
-        total = prendas.stream().mapToDouble(prenda -> prenda.total).sum();
-        recargos = prendas.stream().mapToDouble(prenda -> prenda.recargos).sum();
-        descuentos = prendas.stream().mapToDouble(prenda -> prenda.descuentos).sum();
-    }
-
-    /**
-     * Agrega una prenda al carrito.
-     * 
-     * @param prenda la prenda a anadirse
-     */
-    public void agregarPrenda(Prenda prenda) {
-
-        Optional<Prenda> existente = prendas.stream()
-                .filter(p -> p.nroDePrenda == prenda.nroDePrenda && p.estado() == prenda.estado()).findFirst();
-
-        if (existente.isPresent()) {
-            existente.get().agregarItem();
-        } else {
-            prendas.add(prenda);
-        }
-
-        items++;
-    }
-
-    public double ganancia() {
-        return prendas.stream().mapToDouble(prenda -> prenda.ganancia()).sum();
+        items = carrito;
+        // Tarjeta
+        coeficienteDeRecargo = recargo;
+        medio = TipoPago.tarjeta;
+        cuotas = cuantasCuotas;
     }
 
 }
