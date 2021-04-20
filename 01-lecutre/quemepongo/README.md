@@ -35,3 +35,123 @@ Y luego, al consultar más sobre este requerimiento general, logramos definir qu
 Nótese como se dejó, por el momento, de lado el concepto de `Atuendo`, dado que en esta iteración no se especifican requirimientos, ni comportamientos relacionados a él, salvo que se compone por prendas. Sin embargo su adición no debería levantar muchos conflictos pero sí _breaking changes_.
 
 Utilizamos `enums` para establecer un dominio de datos, si bien en el caso de `Categoría` es más evidente su necesidad, consdieramos establecerlos también para `Color` y `Material`.
+
+### Atendiendo Requerimientos
+
+> Especificar qué tipo de prenda estoy cargando (zapatos, camisa de mangas cortas, pantalón, etc).
+
+```java
+public class Tipo{
+  String nombre;
+  Categoria categoria;
+}
+```
+
+```java
+public class Prenda{
+  public Tipo tipo;
+}
+```
+
+> Identificar a qué categoría pertenece una prenda (parte superior, calzado, parte inferior, accesorios).
+
+Primero definiendo un _dominio de datos_ para la categoría...
+
+```java
+public enum Categoria{
+  ACCESORIO,
+  PARTE_SUPERIOR,
+  PARTE_INFERIOR,
+  CALZADO
+}
+```
+
+Luego...
+
+```java
+public class Prenda{
+  public Tipo tipo;
+  public Categoria categoria;
+}
+```
+
+> Poder indicar de qué tela o material está hecha una prenda
+
+```java
+public enum Material{
+  TELA1,
+  MATERIAL1,
+  // Materiales o Telas...
+}
+```
+
+```java
+public class Prenda{
+  public Tipo tipo;
+  public Categoria categoria;
+  public Material material;
+}
+```
+
+> Poder indicar un color principal para mis prendas y, si existe, un color secundario para mis prendas.
+
+Determinamos un dominio para los colores...
+
+```java
+public enum Color{
+  NINGUNO
+  // Colores disponibles
+  // ...
+}
+```
+
+Si modificamos nuestra `Prenda`
+
+```java
+public class Prenda{
+  public Tipo tipo;
+  public Categoria categoria;
+  public Material material;
+  public Color color1;
+  public Color color2 = Color.NINGUNO;
+}
+```
+
+> Evitar que haya prendas sin tipo, tela, categoría o color primario
+
+Para ello utilizamos el _keyword_ `final` para declarar una constante que **requiera** ser inicializada.
+
+```java
+public class Prenda{
+  public final Tipo tipo;
+  public final Categoria categoria;
+  public final Color color1;
+  public Color color2 = Color.NINGUNO;
+  public final Material material;
+}
+```
+
+> Evitar que haya prendas cuya categoría no se condiga con su tipo. (Ej, una remera no puede ser calzado).
+
+Una solución sería determinar la categoría según el `tipo`.
+
+```java
+public class Tipo{
+  String nombre;
+  Categoria categoria;
+
+  public Categoria determinarCategoria(){
+    return this.categoria;
+  }
+}
+```
+
+Luego en el constructor de una `Prenda`...
+
+```java
+public Prenda(Tipo tipoPrenda){
+  categoria = tipoPrenda.determinarCategoria();
+}
+```
+
+Entoncés, por definición, la categoría **SIEMPRE** estaría en coincidencia con el `tipo`.
