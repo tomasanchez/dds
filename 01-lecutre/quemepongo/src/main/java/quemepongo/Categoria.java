@@ -1,7 +1,9 @@
 package quemepongo;
 
 /**
+ * Dominio de categorías de Prendas
  *
+ * @author Tomás Sánchez
  * @since 04.20.2021
  * @version 1.0
  */
