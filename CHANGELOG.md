@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1](https://github.com/tomasanchez/dds/compare/v0.0.0...v0.0.1) (2021-04-21)
+
+
+### Features
+
+* **macowins:** add new Item class ([5f372e8](https://github.com/tomasanchez/dds/commit/5f372e8ee01d0f5cb5d1dd44a3e3fe440295e318))
+* **qmp:** add domain classes ([4e4071f](https://github.com/tomasanchez/dds/commit/4e4071fab62be4789df70d708b0ecc178ed40130))
+* **qmp:** initial release ([57778d6](https://github.com/tomasanchez/dds/commit/57778d6f306378b2bed10c81699caadce45088ab))
+* add queMePongo app ([6283615](https://github.com/tomasanchez/dds/commit/6283615c7a26d4c2fa3edd65e541556986771858))
+
+
+### Bug Fixes
+
+* **qmp:** typo in Color class ([441ac79](https://github.com/tomasanchez/dds/commit/441ac7999f9d07016c4d55a7c5eda5af2ad07415))
+
 ## 0.0.0 (2021-04-18)
 
 
