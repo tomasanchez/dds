@@ -4,9 +4,10 @@ The information, documents and exercises contained in this repository were extra
 
 ## Content
 
-|   Assignment   |                       Description                        |
-| :------------: | :------------------------------------------------------: |
-| **[Macowins]** | Revision Assignment: Class Diagram + Requirements + Java |
+|    Assignment    |                       Description                        |
+| :--------------: | :------------------------------------------------------: |
+|  **[Macowins]**  | Revision Assignment: Class Diagram + Requirements + Java |
+| **[QuéMePongo]** |              Design + Class Diagram + Java               |
 
 ## License
 
@@ -17,3 +18,4 @@ MIT License: <https://mit-license.org/> or see the [`LICENSE`](https://github.co
 <!-- Links -->
 
 [macowins]: ./00-lecture/macowins/README.md
+[quémepongo]: ./01-lecture/quemepongo/README.md
