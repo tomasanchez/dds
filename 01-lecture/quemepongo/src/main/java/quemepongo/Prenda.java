@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author Tomás Sánchez
  * @since 04.21.2021
- * @version 1.1
+ * @version 1.2
  */
 public class Prenda {
 
@@ -28,9 +28,9 @@ public class Prenda {
     /**
      * El color secundario
      *
-     * @since 1.0
+     * @since 1.1
      */
-    public Color color2 = Color.NINGUNO;
+    public Color color2;
 
     /**
      * El material con que está hecho la prenda
@@ -55,16 +55,10 @@ public class Prenda {
      * @param principal  - el color principal
      * @param matnr      - el material con el que está hecha
      * @author Tomás Sánchez
-     * @since 1.1
+     * @since 1.2
      */
     public Prenda(TipoPrenda tipoPrenda, Color principal, Material matnr) {
-
-        if (Objects.isNull(principal) || Objects.isNull(tipoPrenda) || Objects.isNull(matnr))
-            throw new IllegalArgumentException("El tipo, color principal y material son obligatorios");
-
-        tipo = tipoPrenda;
-        color1 = principal;
-        material = matnr;
+        this(tipoPrenda, principal, null, matnr);
     }
 
     /**
@@ -75,10 +69,15 @@ public class Prenda {
      * @param secundario - el color secundario
      * @param matnr      - el material con el que está hecha
      * @author Tomás Sánchez
-     * @since 1.1
+     * @since 1.2
      */
     public Prenda(TipoPrenda tipoPrenda, Color principal, Color secundario, Material matnr) {
-        this(tipoPrenda, principal, matnr);
+        if (Objects.isNull(principal) || Objects.isNull(tipoPrenda) || Objects.isNull(matnr))
+            throw new IllegalArgumentException("El tipo, color principal y material son obligatorios");
+
+        tipo = tipoPrenda;
+        color1 = principal;
+        material = matnr;
         color2 = secundario;
     }
 
