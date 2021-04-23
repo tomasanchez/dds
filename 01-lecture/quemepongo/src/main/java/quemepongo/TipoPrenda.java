@@ -7,7 +7,7 @@ package quemepongo;
  * @version 2.0
  * @since 04.20.2021
  */
-public enum Tipo {
+public enum TipoPrenda {
 
     LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(Categoria.SUPERIOR),
     JEANS(Categoria.INFERIOR);
@@ -37,7 +37,7 @@ public enum Tipo {
      *
      * @since 2.0
      */
-    Tipo(Categoria cat) {
+    TipoPrenda(Categoria cat) {
         categoria = cat;
     }
 }

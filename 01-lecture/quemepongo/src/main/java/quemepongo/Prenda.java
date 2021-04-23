@@ -16,7 +16,7 @@ public class Prenda {
      *
      * @since 1.0
      */
-    public final Tipo tipo;
+    public final TipoPrenda tipo;
 
     /**
      * El color primario
@@ -57,7 +57,7 @@ public class Prenda {
      * @author Tomás Sánchez
      * @since 1.1
      */
-    public Prenda(Tipo tipoPrenda, Color principal, Material matnr) {
+    public Prenda(TipoPrenda tipoPrenda, Color principal, Material matnr) {
 
         if (Objects.isNull(principal) || Objects.isNull(tipoPrenda) || Objects.isNull(matnr))
             throw new IllegalArgumentException("El tipo, color principal y material son obligatorios");
@@ -77,7 +77,7 @@ public class Prenda {
      * @author Tomás Sánchez
      * @since 1.1
      */
-    public Prenda(Tipo tipoPrenda, Color principal, Color secundario, Material matnr) {
+    public Prenda(TipoPrenda tipoPrenda, Color principal, Color secundario, Material matnr) {
         this(tipoPrenda, principal, matnr);
         color2 = secundario;
     }
