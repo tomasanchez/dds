@@ -4,17 +4,13 @@ package quemepongo;
  * Tipos de prendas
  *
  * @author Tomás Sánchez
- * @version 1.0
+ * @version 2.0
  * @since 04.20.2021
  */
-public class Tipo {
+public enum Tipo {
 
-    /**
-     * El nombre del tipo de Prenda
-     *
-     * @since 1.0
-     */
-    String nombre;
+    LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(Categoria.SUPERIOR),
+    JEANS(Categoria.INFERIOR);
 
     /**
      *
@@ -29,8 +25,19 @@ public class Tipo {
      * Determina una categoría de acuerdo al tipo.
      *
      * @return la categoria del tipo
+     * @since 1.0
      */
     Categoria categoria() {
         return this.categoria;
+    }
+
+    /**
+     *
+     * Inicia
+     *
+     * @since 2.0
+     */
+    Tipo(Categoria cat) {
+        categoria = cat;
     }
 }
