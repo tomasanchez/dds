@@ -40,21 +40,6 @@ Utilizamos `enums` para establecer un dominio de datos, si bien en el caso de `C
 
 > Especificar qué tipo de prenda estoy cargando (zapatos, camisa de mangas cortas, pantalón, etc).
 
-```java
-public class Tipo{
-  String nombre;
-  Categoria categoria;
-}
-```
-
-```java
-public class Prenda{
-  public Tipo tipo;
-}
-```
-
-> Identificar a qué categoría pertenece una prenda (parte superior, calzado, parte inferior, accesorios).
-
 Primero definiendo un _dominio de datos_ para la categoría...
 
 ```java
@@ -66,12 +51,38 @@ public enum Categoria{
 }
 ```
 
+Aplica lo mismo a los tipos de prenda. Pero además determinamos la categoría a la que se asocia un tipo.
+
+```java
+public enum Tipo{
+
+  LENTES(Categoria.CALZADO),
+  // ... TIPO(CATEGORIA)
+  CAMISA(Categoria.PARTE_SUPERIOR);
+
+  private Categoria categoria;
+
+  public Categoria categoria();
+  Tipo(Categoria cat){
+    categoria = cat;
+  }
+}
+```
+
+```java
+public class Prenda{
+  public Tipo tipo;
+}
+```
+
+> Identificar a qué categoría pertenece una prenda (parte superior, calzado, parte inferior, accesorios).
+
 Luego...
 
 ```java
 public class Prenda{
   public Tipo tipo;
-  public Categoria categoria;
+  public Categoria categoria(){}
 }
 ```
 
@@ -88,7 +99,7 @@ public enum Material{
 ```java
 public class Prenda{
   public Tipo tipo;
-  public Categoria categoria;
+  public Categoria categoria(){}
   public Material material;
 }
 ```
@@ -110,10 +121,10 @@ Si modificamos nuestra `Prenda`
 ```java
 public class Prenda{
   public Tipo tipo;
-  public Categoria categoria;
+  public Categoria categoria(){}
   public Material material;
   public Color color1;
-  public Color color2 = Color.NINGUNO;
+  public Color color2;
 }
 ```
 
@@ -124,7 +135,7 @@ Para ello utilizamos el _keyword_ `final` para declarar una constante que **requ
 ```java
 public class Prenda{
   public final Tipo tipo;
-  public final Categoria categoria;
+  public Categoria categoria(){}
   public final Color color1;
   public Color color2 = Color.NINGUNO;
   public final Material material;
@@ -133,24 +144,14 @@ public class Prenda{
 
 > Evitar que haya prendas cuya categoría no se condiga con su tipo. (Ej, una remera no puede ser calzado).
 
-Una solución sería determinar la categoría según el `tipo`.
+Una propuesta sería que la prenda no posea el atributo de `categoría`, sino que lo consultáse directamente de su tipo
 
 ```java
-public class Tipo{
-  String nombre;
-  Categoria categoria;
-
-  public Categoria determinarCategoria(){
-    return this.categoria;
+public class Prenda{
+  //...
+  public Categoría categoria(){
+    return tipo.categoria();
   }
-}
-```
-
-Luego en el constructor de una `Prenda`...
-
-```java
-public Prenda(Tipo tipoPrenda){
-  categoria = tipoPrenda.determinarCategoria();
 }
 ```
 
