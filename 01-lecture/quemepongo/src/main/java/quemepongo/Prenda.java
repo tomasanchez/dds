@@ -1,11 +1,13 @@
 package quemepongo;
 
+import java.util.Objects;
+
 /**
  * Prendas de QuéMePongo
  *
  * @author Tomás Sánchez
  * @since 04.21.2021
- * @version 1.0
+ * @version 1.1
  */
 public class Prenda {
 
@@ -53,9 +55,13 @@ public class Prenda {
      * @param principal  - el color principal
      * @param matnr      - el material con el que está hecha
      * @author Tomás Sánchez
-     * @since 1.0
+     * @since 1.1
      */
     public Prenda(Tipo tipoPrenda, Color principal, Material matnr) {
+
+        if (Objects.isNull(principal) || Objects.isNull(tipoPrenda) || Objects.isNull(matnr))
+            throw new IllegalArgumentException("El tipo, color principal y material son obligatorios");
+
         tipo = tipoPrenda;
         color1 = principal;
         material = matnr;
@@ -69,13 +75,11 @@ public class Prenda {
      * @param secundario - el color secundario
      * @param matnr      - el material con el que está hecha
      * @author Tomás Sánchez
-     * @since 1.0
+     * @since 1.1
      */
     public Prenda(Tipo tipoPrenda, Color principal, Color secundario, Material matnr) {
-        tipo = tipoPrenda;
-        color1 = principal;
+        this(tipoPrenda, principal, matnr);
         color2 = secundario;
-        material = matnr;
     }
 
 }
