@@ -2,18 +2,23 @@ package macowins;
 
 import org.junit.jupiter.api.Test;
 
+import macowins.Item.ItemInvalido;
+
 import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Pruebas de Items.
  *
  * @author Tomás Sánchez
- * @version 1.0
+ * @version 1.1
  * @since 04.18.2021
  */
 public class ItemTest {
 
     // Cantidades
+    static private int ninguno = 0;
     static private int pocos = 3;
     static private int algunos = 5;
     static private int muchos = 10;
@@ -55,6 +60,22 @@ public class ItemTest {
         Assertions.assertEquals(camisaNueva.precio(), itemNuevo.precio());
         Assertions.assertEquals(sacoPromo.precio(), itemPromo.precio());
         Assertions.assertEquals(pantalonLiq.precio(), itemLiq.precio());
+    }
+
+    @Test
+    void itemsValidos() {
+        // Item con prenda válida pero cantidad 0
+        assertThrows(ItemInvalido.class, () -> {
+            new Item(pantalonNuevo, ninguno);
+        });
+        // Item sin prenda y cantidad válida
+        assertThrows(ItemInvalido.class, () -> {
+            new Item(null, muchos);
+        });
+        // Item sin prenda y cantidad 0
+        assertThrows(ItemInvalido.class, () -> {
+            new Item(null, ninguno);
+        });
     }
 
 }
