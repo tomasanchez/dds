@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import macowins.Prenda.PrendaInvalida;
+
 /**
  * Pruebas de Prendas.
  *
@@ -28,13 +30,13 @@ public class PrendaTest {
     @Test
     public void prendaSinPrecio() {
         // No se deberian crear prendas sin precio, o precio negativo
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrendaInvalida.class, () -> {
             new Prenda(sinPrecio, Tipo.CAMISA);
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrendaInvalida.class, () -> {
             new Prenda(-precioCaro, Tipo.PANTALON);
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrendaInvalida.class, () -> {
             new Prenda(-0.01, Tipo.SACO);
         });
     }
@@ -42,14 +44,14 @@ public class PrendaTest {
     @Test
     public void descuentoHaceGratis() {
         // No se deberian crear prendas sin precio, o precio negativo
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrendaInvalida.class, () -> {
             new Prenda(sinPrecio, descuentoNada, Tipo.CAMISA);
         });
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrendaInvalida.class, () -> {
             new Prenda(precioBarato, 2 * precioBarato, Tipo.PANTALON);
         });
         // Tampoco serian valido...
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(PrendaInvalida.class, () -> {
             new Prenda(precioBarato, -2 * precioBarato, Tipo.SACO);
         });
     }
@@ -75,7 +77,7 @@ public class PrendaTest {
         Prenda camisa = new Prenda(precioCaro, descuentoModerado, Tipo.CAMISA);
         Prenda saco = new Prenda(precioNormal, descuentoImportante, Tipo.SACO);
         // El estado debe ser promoción
-        Assertions.assertEquals(TipoEstado.promocion, pantalon.estado);
+        Assertions.assertNotEquals(TipoEstado.promocion, pantalon.estado);
         Assertions.assertEquals(TipoEstado.promocion, camisa.estado);
         Assertions.assertEquals(TipoEstado.promocion, saco.estado);
         // El precio final debe ser el precio base - el descuento.
