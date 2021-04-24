@@ -4,7 +4,7 @@ package macowins;
  * Ventas representa el detalle de venta, por prenda
  *
  * @author Tomás Sánchez
- * @version 3.0
+ * @version 3.2
  * @since 04.18.2021
  */
 public class Prenda {
@@ -53,17 +53,10 @@ public class Prenda {
      * 
      * @param base       - el precio base
      * @param tipoPrenda - el tipo de la prenda
-     * @since 3.0
+     * @since 3.1
      */
     public Prenda(double base, Tipo tipoPrenda) {
-
-        if (base <= 0)
-            throw new IllegalArgumentException("El precio base debe ser mayor a 0");
-
-        precioBase = base;
-        descuentos = 0;
-        estado = TipoEstado.nuevo;
-        tipo = tipoPrenda;
+        this(base, 0, tipoPrenda);
     }
 
     /**
@@ -72,17 +65,45 @@ public class Prenda {
      * @param base       - el precion original
      * @param dcto       - el descuento aplicado
      * @param tipoPrenda - el tipo de la prenda
-     * @since 3.0
+     * @since 3.2
      */
     public Prenda(double base, double dcto, Tipo tipoPrenda) {
 
+        if (base <= 0)
+            throw new PrendaInvalida("El precio base debe ser mayor a 0.");
+
         if (base - Math.abs(dcto) <= 0)
-            throw new IllegalArgumentException("El precio base de la Prenda no puede ser menor o igual al descueto.");
+            throw new PrendaInvalida("El descuento no puede ser mayor o igual al precio base.");
 
         precioBase = base;
         descuentos = dcto > 0 && dcto < 1 ? base * dcto : Math.abs(dcto);
-        estado = precioBase - descuentos == precioBase * 0.5 ? TipoEstado.liquidacion : TipoEstado.promocion;
+
+        if (dcto == 0)
+            estado = TipoEstado.nuevo;
+        else
+            estado = precioBase - descuentos == precioBase * 0.5 ? TipoEstado.liquidacion : TipoEstado.promocion;
+
         tipo = tipoPrenda;
+    }
+
+    /**
+     * RuntimeException por Prenda Inválida.
+     * 
+     * @author Tomás Sánchez
+     * @version 1.0
+     * @since 3.2
+     */
+    public class PrendaInvalida extends RuntimeException {
+
+        /**
+         * Excepción por Prenda inválida.
+         * 
+         * @param causa la causa de la excepcion
+         * @since 1.0
+         */
+        public PrendaInvalida(String causa) {
+            super("Prenda inválida: " + causa);
+        }
     }
 
 }
