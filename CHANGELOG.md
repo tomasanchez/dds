@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/tomasanchez/dds/compare/v0.0.3...v0.0.4) (2021-04-24)
+
+
+### Features
+
+* **lecture:** add lecture 3 ([3e2b9e9](https://github.com/tomasanchez/dds/commit/3e2b9e9b5a43eb43730b9fab6560571235931433))
+* **macowins:** custom runtime exception ([4ecfe4f](https://github.com/tomasanchez/dds/commit/4ecfe4fcae22dccdbb5423e90812c0033a102a28))
+* **macowins:** custom runtime exception ([193298a](https://github.com/tomasanchez/dds/commit/193298afa4df832373c84ff01bfc51d7eee82565))
+
+
+### Bug Fixes
+
+* **qmp:** constructors call order ([051d9a2](https://github.com/tomasanchez/dds/commit/051d9a2fb9267013b951a0b7642ff60a362431f8))
+
 ### [0.0.3](https://github.com/tomasanchez/dds/compare/v0.0.2...v0.0.3) (2021-04-23)
 
 
