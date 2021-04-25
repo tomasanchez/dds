@@ -23,14 +23,14 @@ public class Prenda {
      *
      * @since 1.0
      */
-    public final Color color1;
+    public final String color1;
 
     /**
      * El color secundario
      *
      * @since 1.1
      */
-    public Color color2;
+    public String color2;
 
     /**
      * El material con que está hecho la prenda
@@ -57,7 +57,7 @@ public class Prenda {
      * @author Tomás Sánchez
      * @since 1.2
      */
-    public Prenda(TipoPrenda tipoPrenda, Color principal, Material matnr) {
+    public Prenda(TipoPrenda tipoPrenda, String principal, Material matnr) {
         this(tipoPrenda, principal, null, matnr);
     }
 
@@ -71,7 +71,7 @@ public class Prenda {
      * @author Tomás Sánchez
      * @since 1.2
      */
-    public Prenda(TipoPrenda tipoPrenda, Color principal, Color secundario, Material matnr) {
+    public Prenda(TipoPrenda tipoPrenda, String principal, String secundario, Material matnr) {
         if (Objects.isNull(principal) || Objects.isNull(tipoPrenda) || Objects.isNull(matnr))
             throw new IllegalArgumentException("El tipo, color principal y material son obligatorios");
 
