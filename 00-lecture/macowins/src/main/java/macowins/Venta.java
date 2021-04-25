@@ -1,13 +1,14 @@
 package macowins;
 
 import java.time.LocalDate; // import the LocalDate class
-import java.util.ArrayList; // for collection
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Ventas representa la cabecera de las ventas realizadas en Maco Wins.
  *
  * @author Tomás Sánchez
- * @version 2.0
+ * @version 3.0
  * @since 04.18.2021
  */
 public class Venta {
@@ -24,28 +25,28 @@ public class Venta {
      * 
      * @since 2.0
      */
-    ArrayList<Item> items;
+    List<Item> items;
 
     /**
      * Coeficiente de recargo para el medio de pago
      * 
      * @since 1.0
      */
-    public final double coeficienteDeRecargo;
+    public double coeficienteDeRecargo;
 
     /**
      * Cantidad de cuotas en las que se abona
      * 
      * @since 1.0
      */
-    public final int cuotas;
+    public int cuotas;
 
     /**
      * Medio de pago
      * 
      * @since 2.0
      */
-    public final Pago medio;
+    public Pago medio;
 
     /**
      * Obtiene el precio final
@@ -63,28 +64,72 @@ public class Venta {
     /**
      * Genera una venta en efectivo segun un carrito de prendas.
      * 
+     * @param carrito un listado de items a vender
      * @since 2.0
      */
-    public Venta(ArrayList<Item> carrito) {
-
-        fecha = LocalDate.now();
-        items = carrito;
-        coeficienteDeRecargo = 0;
-        medio = TipoPago.efectivo;
-        cuotas = 1;
+    public Venta(List<Item> carrito) {
+        this(carrito, 0, 0);
     }
 
-    public Venta(ArrayList<Item> carrito, double recargo, int cuantasCuotas) {
+    /**
+     * Generauna venta
+     * 
+     * @param carrito       los items a vender
+     * @param recargo       un coeficiente de recargo por venta de tarjetas
+     * @param cuantasCuotas la cantidad de cuotas en las que se abona
+     */
+    public Venta(List<Item> carrito, double recargo, int cuantasCuotas) {
 
-        if (cuantasCuotas <= 0)
-            throw new IllegalArgumentException("Las cuotas deben ser mayores a 0");
+        // Fail fasts
+
+        if (Objects.isNull(carrito) || carrito.size() == 0)
+            throw new VentaInvalida("El carrito no puede estar vacío");
+
+        if (cuantasCuotas < 0)
+            throw new VentaInvalida("No pueden haber cuotas negativas");
+
+        if (cuantasCuotas == 0 && recargo > 0)
+            throw new VentaInvalida("Las cuotas en tarjeta deben ser mayores a 0");
+
+        if (cuantasCuotas > 0 && recargo <= 0)
+            throw new VentaInvalida("Las ventas en cuotas, deben poseer un recargo mayor a 0");
 
         fecha = LocalDate.now();
         items = carrito;
         // Tarjeta
         coeficienteDeRecargo = recargo;
-        medio = TipoPago.tarjeta;
         cuotas = cuantasCuotas;
+        medio = cuotas == 0 ? TipoPago.efectivo : TipoPago.tarjeta;
+
+    }
+
+    /**
+     * RuntimeException por Venta Inválida.
+     * 
+     * @author Tomás Sánchez
+     * @version 1.0
+     * @since 3.0
+     */
+    public class VentaInvalida extends RuntimeException {
+        /**
+         * Excepción en runtime, al ingresar una Venta.
+         * 
+         * @param causa la causa de invalidez
+         * @throws RuntimeException
+         */
+        public VentaInvalida(String causa) {
+            super("La venta es inválida: " + causa);
+        }
+    }
+
+    /**
+     * Modifica la fecha (solo debugging)
+     * 
+     * @param fecha el nuevo valor
+     * @since 3.0
+     */
+    public void fecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
 }

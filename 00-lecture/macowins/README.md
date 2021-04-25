@@ -40,117 +40,112 @@ Ah, un requerimiento más: Macowins registra las ventas de estas prendas y neces
 - Permitir consultar: precio, tipo de una venta de prenda.
 - Resumen de ganacia de un determinado día.
 
-### Solución
+### Diagrama
 
 ![Diagrama de Clases](images/maco_wins-cd.png)
 
-Tomo como Hipótesis de trabajo que se pide presentar un producto solución.
-Siguienda con esa idea, como el requirimiento es `consultar precio, tipo de prenda` uno debería poder determinar, dado un nro de venta y una posicion obtener la ganancia de una prenda en particular.
+### Atendiendo requerimientos
 
-Presento la siguiente solución:
+> Consultar precio de un prenda
 
-Una app de Reporte.
+Para calcular el precio, delegamos en su estado...
 
-La cual presentaría la siguiente tabla, permitiendo distintos filtros, por ejemplo: por `Fecha`, por `Items`, por `Cliente`, etc. Y distintos ordenamientos, citando algunos por `Total Abonado` por `Ganancias` por `Descuentos`, etc.
-
-| Fecha | Nro de Venta | Items | Cliente | Precio Base | Descuentos | Recargos | Total Abonado | Ganancias |
-| :---: | :----------: | :---: | :-----: | :---------: | :--------: | :------: | :-----------: | :-------: |
-
-Donde estarian agrupados por fechas, indicando el total de cada fecha. De esta manera cumpliria el requisito de **Resumen de Ganancia por día**.
-
-Suponiendo el fetch de estos datos séan
-
-```ABAP
-" Selecciono todas las columas de la cabecera de ventas
-SELECT * FROM zVENTAS_CABECERA                      "Para el ejemplo invento una tabla Z
-INTO CORRESPONDING FIELDS OF TABLE et_entityset.    "Lo almaceno en la tabla exportable
-
-* Me ahorro en detalles de filtros y ordenamientos, que no aportan a la solución en sí.
-```
-
-Luego, siguiendo la lógica de nuestros objetos planteados...
-
-Los cálculos serían
-
-```js
-coeficienteFijo;
-
-class Venta {
-  prendas;
-  cuotasTarjeta;
-  subtotal;
-
-  descuentos() {
-    return this.prendas.reduce((prenda) => prenda.descuento(), 0);
-  }
-  ganancia() {
-    return this.prendas.reduce((prenda) => prenda.ganancia(), 0);
-  }
-  // Asumo que ganancia no incluye los recargos
-  total() {
-    return ganancia() + confirmarPago();
-  }
-  confirmarPago() {
-    return this.cuotas * coeficienteFijo + 0.1 * this.subTotal;
-  }
-}
-
-agruparPorFecha(Ventas) // No considero necesario desglosar esta función
-  .map((agrupacion) =>
-    /* Asumo cada agrupacion como si fuera:
-            agrupacion = [Venta0, Venta1, ...]
-            Nótese que esta función la describo para demostrar el uso del método ganancia() */
-    agrupacion.reduce((Venta) => Venta.ganancia(), 0)
-  );
-```
-
-Con detalle por Venta que mostraría el detalle de cada `posición` de cada venta.
-
-| Prenda | Estado | Tipo | Cantidad | Precio Base | Descuentos | Ganacias |
-| :----: | :----: | :--: | :------: | :---------: | :--------: | -------- |
-
-```ABAP
-" Selecciono todas las columas de la cabecera de ventas
-SELECT * FROM zVENTAS_DETALLE                       "Para el ejemplo invento una tabla Z
-INTO CORRESPONDING FIELDS OF TABLE et_entityset.    "Lo almaceno en la tabla exportable
-WHERE nro_de_venta EQ lv_venta.                     "Suponiendo que en lv_venta esta la primary key de la cabecera.
-```
-
-Dónde el calculo de ganancias sería
-
-```js
-class Estado {
-  obtenerPrecio(precioBase, descuento) {}
-}
-
-// Por ejemplo para los estados actuales...
-
-/*
-Nuevo = {
-  descripcion = "no modifican el precio base".
-  obtenerPrecio(precioBase, descuento){return precioBase}
-}
-
-Liquidacion = {
-  descripcion = "Es un 50% del valor del producto.".
-  obtenerPrecio(precioBase, descuento){return precioBase * 0.5}
-}
-
-Promocion = {
-  descripcion = "Le resta un valor fijo decidido por el usuario".
-  obtenerPrecio(precioBase, descuento){return precioBase-descuento}
-}
-*/
-```
-
-Notese que se permitiría una futura adición de nuevos estados.
-
-```js
-class Prenda {
-  estado;
+```java
+class Prenda{
   //...
-  ganancia() {
-    return estado.obtenerPrecio(this.precio, this.descuentoManual);
+  double precio(){
+    return estado.precio(this.precioBase, this.descuento);
+  }
+}
+```
+
+Siendo su calculo...
+
+```java
+@FunctionalInterface
+ public interface Estado{
+   precio(double precioBase, double descuento);
+ }
+
+public class TipoEstado{
+  // El precio sin modificaciones
+  static Estado nuevo = ((p, d) -> p);
+  // El precio - el descuento
+  static Estado promocion = ((p, d) -> p - d);
+  // Mitad de precio
+  static Estado liquidacion = ((p, d) -> p * 0.5);
+}
+```
+
+Opté por esta solución ya que lo que buscaba era tener una clase, las cuales de sus objetos sólo varie la lógica de un cálculo.
+
+Mi idea principal era pasar una función al construir cada objeto. Investigando, llegué a que lo que quería lograr podría plantearse de esta forma.
+
+> Permitir consultar su tipo
+
+```java
+public enum TipoPrenda{
+  SACO, CAMISA, PANTALON
+}
+
+class Prenda{
+  TipoPrenda tipo;
+}
+```
+
+> Saber las ganancias de un determinado día
+
+```java
+class Venta{
+  LocalDate fecha;
+  List<Item> items;
+  TipoPago medioDePago;
+  int cuotas;
+  double coefDeRecargo;
+
+  double precio(){
+    double subTotal = items.stream().mapToDouble( i -> i.precio()).sum();
+    return medioDePago.precio(subTotal, coefDeRecargo, cuotas);
+  }
+}
+```
+
+donde un Item no es mas que:
+
+```java
+class Item{
+  Prenda prendas;
+  int cantidad;
+
+  double precio(){ return prenda.precio() * cantidad;}
+}
+```
+
+Y al igual que con los `Estados`, el `TipoPago`, aplica una lógica similar...
+
+```java
+@FunctionalInterface
+interface Pago{
+  public double precio(double subtotal, double coeficiente, int cuotas);
+}
+
+class TipoPago{
+  // No modifica
+  static Pago efectivo = ((t, coef, c) -> t);
+  // Tiene un calculo particular
+  static Pago tarjeta = ((t, coef, c) -> c * coef + 0.01 * t);
+}
+```
+
+Asumiendo que se cuenta con una `ArrayList<Venta> ventas` donde estan listadas todas las ventas de varios días...
+
+Uno debería filtrar las ventas al día en cuestión(`filter`), luego obtener el precio de cada una de las ventas (`map`) y sumarizar esto (`sum/reduce/fold`).
+
+```java
+public Venta{
+  // ...
+  static public resumenDel(List<Venta> ventas, LocalDate fecha){
+    ventas.stream().filter( v -> v.fecha.equals(fecha)).mapToDouble( v -> v.precio()).sum();
   }
 }
 ```
