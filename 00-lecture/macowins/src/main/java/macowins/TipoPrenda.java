@@ -6,7 +6,7 @@ package macowins;
  * @version 1.1
  * @since 04.18.2021
  */
-public enum Tipo {
+public enum TipoPrenda {
     /**
      * @since 1.0
      */
