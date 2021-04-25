@@ -31,13 +31,13 @@ public class PrendaTest {
     public void prendaSinPrecio() {
         // No se deberian crear prendas sin precio, o precio negativo
         assertThrows(PrendaInvalida.class, () -> {
-            new Prenda(sinPrecio, Tipo.CAMISA);
+            new Prenda(sinPrecio, TipoPrenda.CAMISA);
         });
         assertThrows(PrendaInvalida.class, () -> {
-            new Prenda(-precioCaro, Tipo.PANTALON);
+            new Prenda(-precioCaro, TipoPrenda.PANTALON);
         });
         assertThrows(PrendaInvalida.class, () -> {
-            new Prenda(-0.01, Tipo.SACO);
+            new Prenda(-0.01, TipoPrenda.SACO);
         });
     }
 
@@ -45,22 +45,22 @@ public class PrendaTest {
     public void descuentoHaceGratis() {
         // No se deberian crear prendas sin precio, o precio negativo
         assertThrows(PrendaInvalida.class, () -> {
-            new Prenda(sinPrecio, descuentoNada, Tipo.CAMISA);
+            new Prenda(sinPrecio, descuentoNada, TipoPrenda.CAMISA);
         });
         assertThrows(PrendaInvalida.class, () -> {
-            new Prenda(precioBarato, 2 * precioBarato, Tipo.PANTALON);
+            new Prenda(precioBarato, 2 * precioBarato, TipoPrenda.PANTALON);
         });
         // Tampoco serian valido...
         assertThrows(PrendaInvalida.class, () -> {
-            new Prenda(precioBarato, -2 * precioBarato, Tipo.SACO);
+            new Prenda(precioBarato, -2 * precioBarato, TipoPrenda.SACO);
         });
     }
 
     @Test
     public void prendaNueva() {
-        Prenda pantalon = new Prenda(precioCarisimo, Tipo.PANTALON);
-        Prenda camisa = new Prenda(precioCaro, Tipo.CAMISA);
-        Prenda saco = new Prenda(precioNormal, Tipo.SACO);
+        Prenda pantalon = new Prenda(precioCarisimo, TipoPrenda.PANTALON);
+        Prenda camisa = new Prenda(precioCaro, TipoPrenda.CAMISA);
+        Prenda saco = new Prenda(precioNormal, TipoPrenda.SACO);
         // El estado debe ser nuevo
         Assertions.assertEquals(TipoEstado.nuevo, pantalon.estado);
         Assertions.assertEquals(TipoEstado.nuevo, camisa.estado);
@@ -73,9 +73,9 @@ public class PrendaTest {
 
     @Test
     public void prendaPromo() {
-        Prenda pantalon = new Prenda(precioCarisimo, descuentoNada, Tipo.PANTALON);
-        Prenda camisa = new Prenda(precioCaro, descuentoModerado, Tipo.CAMISA);
-        Prenda saco = new Prenda(precioNormal, descuentoImportante, Tipo.SACO);
+        Prenda pantalon = new Prenda(precioCarisimo, descuentoNada, TipoPrenda.PANTALON);
+        Prenda camisa = new Prenda(precioCaro, descuentoModerado, TipoPrenda.CAMISA);
+        Prenda saco = new Prenda(precioNormal, descuentoImportante, TipoPrenda.SACO);
         // El estado debe ser promoción
         Assertions.assertNotEquals(TipoEstado.promocion, pantalon.estado);
         Assertions.assertEquals(TipoEstado.promocion, camisa.estado);
@@ -88,9 +88,9 @@ public class PrendaTest {
 
     @Test
     public void prendaLiquiacion() {
-        Prenda pantalon = new Prenda(precioCarisimo, liquidacion, Tipo.PANTALON);
-        Prenda camisa = new Prenda(precioCaro, liquidacion, Tipo.CAMISA);
-        Prenda saco = new Prenda(precioNormal, liquidacion, Tipo.SACO);
+        Prenda pantalon = new Prenda(precioCarisimo, liquidacion, TipoPrenda.PANTALON);
+        Prenda camisa = new Prenda(precioCaro, liquidacion, TipoPrenda.CAMISA);
+        Prenda saco = new Prenda(precioNormal, liquidacion, TipoPrenda.SACO);
         // El estado debe ser liquidación
         Assertions.assertEquals(TipoEstado.liquidacion, pantalon.estado);
         Assertions.assertEquals(TipoEstado.liquidacion, camisa.estado);

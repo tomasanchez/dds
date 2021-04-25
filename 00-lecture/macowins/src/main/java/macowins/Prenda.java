@@ -21,7 +21,7 @@ public class Prenda {
      * 
      * @since 2.0
      */
-    public final Tipo tipo;
+    public final TipoPrenda tipo;
 
     /**
      * Los descuentos manuales de la prenda
@@ -55,7 +55,7 @@ public class Prenda {
      * @param tipoPrenda - el tipo de la prenda
      * @since 3.1
      */
-    public Prenda(double base, Tipo tipoPrenda) {
+    public Prenda(double base, TipoPrenda tipoPrenda) {
         this(base, 0, tipoPrenda);
     }
 
@@ -67,7 +67,7 @@ public class Prenda {
      * @param tipoPrenda - el tipo de la prenda
      * @since 3.2
      */
-    public Prenda(double base, double dcto, Tipo tipoPrenda) {
+    public Prenda(double base, double dcto, TipoPrenda tipoPrenda) {
 
         if (base <= 0)
             throw new PrendaInvalida("El precio base debe ser mayor a 0.");

@@ -31,14 +31,14 @@ public class ItemTest {
     private static final double descuentoMedio = 50.0;
     private static final double liquidacion = 0.5;
     // Prendas Nuevas
-    private static Prenda pantalonNuevo = new Prenda(precioBarato, Tipo.PANTALON);
-    private static Prenda camisaNueva = new Prenda(precioMedio, Tipo.CAMISA);
+    private static Prenda pantalonNuevo = new Prenda(precioBarato, TipoPrenda.PANTALON);
+    private static Prenda camisaNueva = new Prenda(precioMedio, TipoPrenda.CAMISA);
     // Prendas Promociones
-    private static Prenda camisaPromo = new Prenda(precioMedio, descuentoMedio, Tipo.CAMISA);
-    private static Prenda sacoPromo = new Prenda(precioCaro, descuentoImportante, Tipo.SACO);
+    private static Prenda camisaPromo = new Prenda(precioMedio, descuentoMedio, TipoPrenda.CAMISA);
+    private static Prenda sacoPromo = new Prenda(precioCaro, descuentoImportante, TipoPrenda.SACO);
     // Prendas Liquidacion
-    private static Prenda pantalonLiq = new Prenda(precioBarato, liquidacion, Tipo.PANTALON);
-    private static Prenda sacoLiq = new Prenda(precioCaro, liquidacion, Tipo.SACO);
+    private static Prenda pantalonLiq = new Prenda(precioBarato, liquidacion, TipoPrenda.PANTALON);
+    private static Prenda sacoLiq = new Prenda(precioCaro, liquidacion, TipoPrenda.SACO);
 
     @Test
     void precioItemsCantidades() {
