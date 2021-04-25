@@ -1,16 +1,20 @@
 package quemepongo;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Tipos de prendas
  *
  * @author Tomás Sánchez
- * @version 2.0
+ * @version 3.0
  * @since 04.20.2021
  */
 public enum TipoPrenda {
 
     LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(Categoria.SUPERIOR),
-    JEANS(Categoria.INFERIOR);
+    PANTALON_JEAN(Categoria.INFERIOR, "JEAN");
 
     /**
      *
@@ -32,12 +36,40 @@ public enum TipoPrenda {
     }
 
     /**
+     * Listado de materiales admitidos por el tipo de prenda.
      *
-     * Inicia
+     * @since 3.0
+     */
+    List<TipoMaterial> materiales;
+
+    public boolean admiteMaterial(TipoMaterial material) {
+        return materiales.stream().anyMatch(admitido -> admitido.equals(material));
+    }
+
+    /**
+     * Tipos de prenda
      *
+     * @param cat la categoría correspondiente
      * @since 2.0
      */
     TipoPrenda(Categoria cat) {
-        categoria = cat;
+        this(cat, cat.equals(Categoria.CALZADO) ? "" : "ALGODON");
+    }
+
+    /**
+     * Tipo de prenda que admite materiales.
+     *
+     * @param categoria  la categoria del tipo de prenda
+     * @param materiales los materiales que admite
+     */
+    TipoPrenda(Categoria categoria, String materiales) {
+
+        this.categoria = categoria;
+        String[] materialesAdmitidos = materiales.split(",");
+
+        this.materiales = new ArrayList<TipoMaterial>();
+
+        Arrays.stream(materialesAdmitidos).map(str -> TipoMaterial.valueOf(str))
+                .forEach(material -> this.materiales.add(material));
     }
 }
