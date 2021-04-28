@@ -2,7 +2,7 @@ package quemepongo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Unit test for simple App.
@@ -13,6 +13,8 @@ class AppTest {
      */
     @Test
     void testApp() {
-        assertEquals(1, 1);
+        assertDoesNotThrow(() -> {
+            new Recomendador().recomendarUniforme();
+        }, "Error");
     }
 }
