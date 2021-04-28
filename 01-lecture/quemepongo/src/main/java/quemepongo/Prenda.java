@@ -1,11 +1,5 @@
 package quemepongo;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Objects;
 
 /**
@@ -52,6 +46,15 @@ public class Prenda {
      */
     public Categoria categoria() {
         return tipo.categoria();
+    }
+
+    /**
+     * Getter de la trama de la prenda
+     *
+     * @return la trama del material.
+     */
+    public TramaTela getTrama() {
+        return material.getTrama();
     }
 
     /**
@@ -142,39 +145,4 @@ public class Prenda {
             super("Prenda Inválida:" + causa);
         }
     }
-
-    public void guardar() {
-        try {
-            ObjectOutputStream escribir = new ObjectOutputStream(
-                    new FileOutputStream("/home/tosanchez/Developer/dds/01-lecture/quemepongo/db/prenda.txt"));
-
-            escribir.writeObject(this);
-            escribir.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    static public Prenda cargar() {
-        Prenda cargar = null;
-        try {
-            ObjectInputStream leer = new ObjectInputStream(
-                    new FileInputStream("/home/tosanchez/Developer/dds/01-lecture/quemepongo/db/prenda.txt"));
-            cargar = (Prenda) leer.readObject();
-            leer.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return cargar;
-    }
-
 }
