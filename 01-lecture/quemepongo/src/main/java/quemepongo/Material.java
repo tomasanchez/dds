@@ -34,11 +34,17 @@ public class Material {
      */
     public Material(TipoMaterial nombre, TramaTela trama) {
 
-        if (!this.nombre.admiteTrama(trama))
-            throw new MaterialInvalido(nombre.toString() + " no admite " + trama.toString());
+        if (Objects.isNull(nombre))
+            throw new MaterialInvalido("No puede crease un material sin Tipo de Material.");
+
+        if (Objects.isNull(trama))
+            this.trama = TramaTela.LISA;
+        else if (!this.nombre.admiteTrama(trama))
+            throw new MaterialInvalido(nombre.toString() + " no admite la trama " + trama.toString());
+        else
+            this.trama = trama;
 
         this.nombre = nombre;
-        this.trama = Objects.isNull(trama) ? TramaTela.LISA : trama;
     }
 
     /**
