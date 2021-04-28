@@ -10,14 +10,39 @@ import java.util.Objects;
  */
 public class Borrador {
 
+    /**
+     * El tipo de la prenda a constuir.
+     *
+     * @since 1.0
+     */
     TipoPrenda tipo;
 
+    /**
+     * El tipo del material de la prenda a constuir.
+     *
+     * @since 1.0
+     */
     TipoMaterial material;
 
+    /**
+     * La trama del material de la prenda a constuir.
+     *
+     * @since 1.0
+     */
     TramaTela trama;
 
+    /**
+     * El color principal de la prenda a constuir.
+     *
+     * @since 1.0
+     */
     Color color1;
 
+    /**
+     * El color secundario de la prenda a constuir.
+     *
+     * @since 1.0
+     */
     Color color2;
 
     /**
