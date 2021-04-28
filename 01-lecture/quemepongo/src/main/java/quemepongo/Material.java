@@ -25,6 +25,15 @@ public class Material {
     TramaTela trama;
 
     /**
+     * Getter de la trama
+     *
+     * @return la trama del material
+     */
+    public TramaTela getTrama() {
+        return trama;
+    }
+
+    /**
      * Instancia un material
      *
      * @param nombre El material en sí
@@ -39,7 +48,7 @@ public class Material {
 
         if (Objects.isNull(trama))
             this.trama = TramaTela.LISA;
-        else if (!this.nombre.admiteTrama(trama))
+        else if (!nombre.admiteTrama(trama))
             throw new MaterialInvalido(nombre.toString() + " no admite la trama " + trama.toString());
         else
             this.trama = trama;
