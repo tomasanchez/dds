@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public enum TipoPrenda {
 
     LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(Categoria.SUPERIOR),
-    PANTALON_JEAN(Categoria.INFERIOR, "JEAN");
+    PANTALON_JEAN(Categoria.INFERIOR, "JEAN"), CHOMBA(Categoria.SUPERIOR), ZAPATOS(Categoria.CALZADO, "CUERO"),
+    ZAPATILLAS(Categoria.CALZADO, "CUERO"), PANTALON(Categoria.INFERIOR, "ALGODON,ACETATO");
 
     /**
      *
