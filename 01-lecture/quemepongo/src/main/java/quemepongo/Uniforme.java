@@ -1,9 +1,11 @@
 package quemepongo;
 
+import java.util.Objects;
+
 /**
  * Atuendos uniformes
  *
- * @verion 1.0
+ * @verion 1.1
  * @since 04.27.2021
  */
 public class Uniforme {
@@ -37,8 +39,28 @@ public class Uniforme {
      * @param calzado  el calzado
      */
     public Uniforme(Prenda superior, Prenda inferior, Prenda calzado) {
+
+        if (Objects.isNull(superior))
+            throw new UniformeInvalido("No puede faltar una parte superior");
+        if (Objects.isNull(inferior))
+            throw new UniformeInvalido("No puede faltar una parte inferior");
+        if (Objects.isNull(calzado))
+            throw new UniformeInvalido("No puede faltar calzado");
+
         this.superior = superior;
         this.inferior = inferior;
         this.calzado = calzado;
+    }
+
+    /**
+     * Runtime Exceptions por Uniforme Inválido
+     *
+     * @throws RuntimeException Por no poder crear el uniforme.
+     * @since 1.1
+     */
+    public static class UniformeInvalido extends RuntimeException {
+        UniformeInvalido(String causa) {
+            super("El uniforme es inválido: " + causa);
+        }
     }
 }
