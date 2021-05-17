@@ -6,7 +6,7 @@ import java.util.Random;
 import quemepongo.model.atuendo.Uniforme;
 
 /**
- * Recomendador de uniformes
+ * Recomendador de uniformes.
  *
  * @since 04.28.2021
  * @version 1.0
@@ -21,7 +21,7 @@ public class Recomendador {
     private List<Modista> modistas;
 
     /**
-     * Instancia un recomendador con los modistas Jhonson y San Juan
+     * Instancia un recomendador con los modistas Jhonson y San Juan.
      */
     public Recomendador() {
         modistas = new ArrayList<Modista>();

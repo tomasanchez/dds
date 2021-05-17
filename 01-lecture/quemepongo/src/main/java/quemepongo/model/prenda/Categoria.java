@@ -1,7 +1,7 @@
 package quemepongo.model.prenda;
 
 /**
- * Dominio de categorías de Prendas
+ * Dominio de categorías de Prendas.
  *
  * @author Tomás Sánchez
  * @since 04.20.2021
@@ -9,23 +9,37 @@ package quemepongo.model.prenda;
  */
 public enum Categoria {
 
-    ACCESORIOS("Accesorios"), SUPERIOR("Prenda Superior"), INFERIOR("Prenda Inferior"), CALZADO(
-            "Calzado");
+    /**
+     * Categoria de Prendas Accesorios.
+     */
+    ACCESORIOS("Accesorios"),
+    /**
+     * Categoria de Prendas Superiores.
+     */
+    SUPERIOR("Prenda Superior"),
+    /**
+     * Categoria de Prendas Inferiores.
+     */
+    INFERIOR("Prenda Inferior"),
+    /**
+     * Categoria de Prendas Calzado.
+     */
+    CALZADO("Calzado");
 
     /**
-     * La etiqueta a mostrar
+     * La etiqueta a mostrar.
      *
      * @since 1.0
      */
     private final String label;
 
     /**
-     * Genera una categoría con la una etiqueta o label;
+     * Genera una categoría con la una etiqueta o label.
      *
      * @param nombre la etiqueta de la categoría.
      * @since 1.0
      */
-    private Categoria(String nombre) {
+    Categoria(String nombre) {
         this.label = nombre;
     }
 
