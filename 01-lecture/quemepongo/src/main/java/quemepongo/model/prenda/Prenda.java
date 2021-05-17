@@ -89,13 +89,12 @@ public class Prenda {
         this.material = new Material(material, trama);
     }
 
-    /**
-     * La categoría de la prenda, coincidente con la de su tipo.
-     *
-     * @since 1.0
-     */
     public Categoria categoria() {
         return tipo.categoria();
+    }
+
+    public TipoPrenda getTipo() {
+        return tipo;
     }
 
     public TramaTela getTrama() {
@@ -108,6 +107,14 @@ public class Prenda {
 
     public String getColor1() {
         return this.color1.getCodigo();
+    }
+
+    public Color getColorPrincipal() {
+        return this.color1;
+    }
+
+    public Color getColorSecundario() {
+        return this.color2;
     }
 
     public String getColor2() {
