@@ -7,7 +7,7 @@ import quemepongo.model.material.TipoMaterial;
 import quemepongo.model.material.TramaTela;
 
 /**
- * Prendas de QuéMePongo
+ * Prendas de QuéMePongo.
  *
  * @author Tomás Sánchez
  * @since 04.21.2021
@@ -16,100 +16,35 @@ import quemepongo.model.material.TramaTela;
 public class Prenda {
 
     /**
-     * El tipo de prenda
+     * El tipo de prenda.
      *
      * @since 1.0
      */
-    public TipoPrenda tipo;
+    private TipoPrenda tipo;
 
     /**
-     * El color primario
+     * El color primario.
      *
      * @since 1.0
      */
-    public Color color1;
+    private Color color1;
 
     /**
-     * El color secundario
+     * El color secundario.
      *
      * @since 1.1
      */
-    public Color color2;
+    private Color color2;
 
     /**
-     * El material con que está hecho la prenda
+     * El material con que está hecho la prenda.
      *
      * @since 1.0
      */
-    public Material material;
+    private Material material;
 
     /**
-     * La categoría de la prenda, coincidente con la de su tipo.
-     *
-     * @since 1.0
-     */
-    public Categoria categoria() {
-        return tipo.categoria();
-    }
-
-    /**
-     * Getter de la trama de la prenda
-     *
-     * @return la trama del material.
-     */
-    public TramaTela getTrama() {
-        return material.getTrama();
-    }
-
-    public TipoMaterial getMaterial() {
-        return material.getMaterial();
-    }
-
-    /**
-     * Setter de color secundario a una prenda.
-     *
-     * @param color2 el color secundario a añadir.
-     * @since 2.0
-     */
-    public void setColor2(Color color2) {
-        this.color2 = color2;
-    }
-
-    /**
-     * Setter de tipo a una prenda.
-     *
-     * @param tipo el nuevo tipo
-     * @since 2.0
-     */
-    public void setTipo(TipoPrenda tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * Setter de color principal a una prenda.
-     *
-     * @param color1 el color principal.
-     * @since 2.0
-     */
-    public void setColor1(Color color1) {
-        this.color1 = color1;
-    }
-
-    /**
-     * Setter de un material.
-     *
-     * @param material el material del tipo
-     * @since 2.0
-     */
-    public void setMaterial(Material material) {
-        if (!tipo.admiteMaterial(getMaterial()))
-            throw new PrendaInvalida("El tipo de prenda no acepta el material indicado");
-        else
-            this.material = material;
-    }
-
-    /**
-     * Instancia una prenda de un único color
+     * Instancia una prenda de un único color.
      *
      * @param tipoPrenda el tipo de prenda a crear
      * @param material el tipo de material
@@ -121,27 +56,32 @@ public class Prenda {
     }
 
     /**
+     * Instancia una prenda con dos colores.
      *
      * @param tipo el tipo de prenda a crear
      * @param material el material con el que esta hecho
      * @param trama la trama del material
-     * @param color1
-     * @param color2
+     * @param color1 el color principal.
+     * @param color2 el color secundario.
      */
     public Prenda(TipoPrenda tipo, TipoMaterial material, TramaTela trama, Color color1,
             Color color2) {
-
         // Iteración I
-        if (Objects.isNull(tipo))
+        if (Objects.isNull(tipo)) {
             throw new PrendaInvalida("Necesita obligatoriamente un tipo de prenda");
-        if (Objects.isNull(material))
+        }
+        if (Objects.isNull(material)) {
             throw new PrendaInvalida("Necesita obligatoriamente un material");
-        if (Objects.isNull(color1))
+        }
+        if (Objects.isNull(color1)) {
             throw new PrendaInvalida("Necesita obligatoriamente un color principal");
+        }
 
         // Iteración II
-        if (!tipo.admiteMaterial(material))
+        if (!tipo.admiteMaterial(material)) {
             throw new PrendaInvalida("El tipo de prenda no acepta el material indicado");
+        }
+
 
         this.tipo = tipo;
         this.color1 = color1;
@@ -149,6 +89,52 @@ public class Prenda {
         this.material = new Material(material, trama);
     }
 
+    /**
+     * La categoría de la prenda, coincidente con la de su tipo.
+     *
+     * @since 1.0
+     */
+    public Categoria categoria() {
+        return tipo.categoria();
+    }
+
+    public TramaTela getTrama() {
+        return material.getTrama();
+    }
+
+    public TipoMaterial getMaterial() {
+        return material.getMaterial();
+    }
+
+    public String getColor1() {
+        return this.color1.getCodigo();
+    }
+
+    public String getColor2() {
+        return this.color2.getCodigo();
+    }
+
+    /**
+     * Setter de un material.
+     *
+     * @param material el material del tipo
+     * @since 2.0
+     */
+    public void setMaterial(Material material) {
+        if (!tipo.admiteMaterial(getMaterial())) {
+            throw new PrendaInvalida("El tipo de prenda no acepta el material indicado");
+        } else {
+            this.material = material;
+        }
+    }
+
+    /**
+     * Excepciom de Prendas de QuéMePongo.
+     *
+     * @author Tomás Sánchez
+     * @since 04.21.2021
+     * @version 2.0
+     */
     public static class PrendaInvalida extends RuntimeException {
         public PrendaInvalida(String causa) {
             super("Prenda Inválida:" + causa);
