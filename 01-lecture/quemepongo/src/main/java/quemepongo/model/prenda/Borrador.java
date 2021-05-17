@@ -18,35 +18,35 @@ public class Borrador {
      *
      * @since 1.0
      */
-    TipoPrenda tipo;
+    private TipoPrenda tipo;
 
     /**
      * El tipo del material de la prenda a constuir.
      *
      * @since 1.0
      */
-    TipoMaterial material;
+    private TipoMaterial material;
 
     /**
      * La trama del material de la prenda a constuir.
      *
      * @since 1.0
      */
-    TramaTela trama;
+    private TramaTela trama;
 
     /**
      * El color principal de la prenda a constuir.
      *
      * @since 1.0
      */
-    Color color1;
+    private Color color1;
 
     /**
      * El color secundario de la prenda a constuir.
      *
      * @since 1.0
      */
-    Color color2;
+    private Color color2;
 
     /**
      * Borrador desde cero.
@@ -74,51 +74,6 @@ public class Borrador {
     }
 
     /**
-     * Setter de tipo de prenda.
-     *
-     * @param tipo el tipo de la prenda.
-     */
-    public void especificarTipo(TipoPrenda tipo) {
-        this.tipo = tipo;
-    }
-
-    /**
-     * Setter de material
-     *
-     * @param material el Tipo de material
-     */
-    public void especificarMaterial(TipoMaterial material) {
-        this.material = material;
-    }
-
-    /**
-     * Setter de color primario.
-     *
-     * @param color1 el color principal de la prenda.
-     */
-    public void especificarColorPrimario(Color color1) {
-        this.color1 = color1;
-    }
-
-    /**
-     * Setter de color secundario.
-     *
-     * @param color2 el color secundario.
-     */
-    public void especificarColorSecundario(Color color2) {
-        this.color2 = color2;
-    }
-
-    /**
-     * Setter de trama.
-     *
-     * @param trama la trama del material de una prenda.
-     */
-    public void especificarTrama(TramaTela trama) {
-        this.trama = trama;
-    }
-
-    /**
      * De ser posible guarda la prenda borrador.
      *
      * @since 1.0
@@ -126,4 +81,50 @@ public class Borrador {
     public Prenda guardarPrenda() {
         return new Prenda(tipo, material, trama, color1, color2);
     }
+
+    public TipoPrenda getTipo() {
+        return tipo;
+    }
+
+    public TipoMaterial getMaterial() {
+        return material;
+    }
+
+    public TramaTela getTrama() {
+        return trama;
+    }
+
+    public Color getColor1() {
+        return color1;
+    }
+
+    public Color getColor2() {
+        return color2;
+    }
+
+    public Borrador setTipo(TipoPrenda t) {
+        this.tipo = t;
+        return this;
+    }
+
+    public Borrador setMaterial(TipoMaterial m) {
+        this.material = m;
+        return this;
+    }
+
+    public Borrador setTrama(TramaTela t) {
+        this.trama = t;
+        return this;
+    }
+
+    public Borrador setColor1(Color color) {
+        this.color1 = color;
+        return this;
+    }
+
+    public Borrador setColor2(Color color) {
+        this.color2 = color;
+        return this;
+    }
+
 }

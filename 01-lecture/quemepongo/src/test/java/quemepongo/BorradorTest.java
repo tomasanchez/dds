@@ -27,9 +27,9 @@ public class BorradorTest {
 
         // Instancio y relleno una Prenda
         Borrador bosquejo = new Borrador();
-        bosquejo.especificarTipo(TipoPrenda.CAMISA);
-        bosquejo.especificarMaterial(TipoMaterial.ALGODON);
-        bosquejo.especificarColorPrimario(colorPrueba());
+        bosquejo.setTipo(TipoPrenda.CAMISA);
+        bosquejo.setMaterial(TipoMaterial.ALGODON);
+        bosquejo.setColor1(colorPrueba());
 
         Prenda camisaAlgodonGris =
                 new Prenda(TipoPrenda.CAMISA, TipoMaterial.ALGODON, colorPrueba());
