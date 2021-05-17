@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/tomasanchez/dds/compare/v0.0.4...v0.0.5) (2021-05-17)
+
+
+### Features
+
+* **macowins:** finish Venta closes [#1](https://github.com/tomasanchez/dds/issues/1) ([fba3894](https://github.com/tomasanchez/dds/commit/fba3894da4fcdce10652c00bdb78449f84feb694))
+* **qmp:** add constructor to Color ([9795d33](https://github.com/tomasanchez/dds/commit/9795d334023e0011be742a49ad12e486d613d564))
+* **qmp:** add resolution 2 ([4b6c3b1](https://github.com/tomasanchez/dds/commit/4b6c3b1d96c5d389900f6a227f3bbe88ca384bb0))
+* **qmp:** material domain ([1184417](https://github.com/tomasanchez/dds/commit/11844173fcf2d6eaf5ed0820f53e4e4184846cf8))
+* **qmp:** new Recomendador ([27789cd](https://github.com/tomasanchez/dds/commit/27789cd96e9804213ebd9a8ba61cb278a6bac716))
+* **qmp:** new Uniforme class ([4f9a83b](https://github.com/tomasanchez/dds/commit/4f9a83b1ebc5374412de7a306923857cb72cc752))
+* **qmp:** nuevo borrador de prendas ([0684034](https://github.com/tomasanchez/dds/commit/0684034a4b15b164735d639a234afcbbca423f14))
+* **qmp:** Prenda builder ([7b29859](https://github.com/tomasanchez/dds/commit/7b298599da2b93e4d9a6d1a4776d8710a5d710b8))
+* **qmp:** Tipo sensible to Material ([bd35368](https://github.com/tomasanchez/dds/commit/bd353688c6607e10ba7e00709b60e449076abe11))
+* **qmp:** Trama for iteration 2 ([7476f56](https://github.com/tomasanchez/dds/commit/7476f568dec9c937351a0f832e885c9d66d3fc9c))
+* **qmp:** Uniforme factory method ([cb0b6b0](https://github.com/tomasanchez/dds/commit/cb0b6b0dc941eb17d46c2f40bfdfc6ab71d57ee9))
+
+
+### Bug Fixes
+
+* **checkstyle:** updated to match ([a41eb4c](https://github.com/tomasanchez/dds/commit/a41eb4c8db23c7a5dbd0cb5a668d35d9abf9957a))
+* **checkstyles:** getters & setters ([baa7384](https://github.com/tomasanchez/dds/commit/baa73847b539a73ec11296deacfb8788e3cbaeca))
+* **checkstyles:** import order ([21f1a23](https://github.com/tomasanchez/dds/commit/21f1a2342a0e2ab479e1c4feea3494bd687a37a9))
+* **checkstyles:** updated to match ([8dc9cff](https://github.com/tomasanchez/dds/commit/8dc9cff2c19152f94486293da0f6a42accb48286))
+* **checkstyles:** updte to match ([26435d5](https://github.com/tomasanchez/dds/commit/26435d58f011774cb455f8542b2ebf2fad2465f2))
+* **checktstyle:** updated to match docs ([4b6c606](https://github.com/tomasanchez/dds/commit/4b6c6063eeafbd9b0183b5fa70d346cf8ede4901))
+* **qmp:** excepciones static ([0956b26](https://github.com/tomasanchez/dds/commit/0956b26a3e5ecf3bc6a7bbd3cdf5968a3409cdce))
+* **qmp:** no null materials ([f92b3c5](https://github.com/tomasanchez/dds/commit/f92b3c582d96f3dddd71e0fea5cc0aefac68abb2))
+* **qmp:** Trama validation, wrong this ([24a145c](https://github.com/tomasanchez/dds/commit/24a145c724b41ba224bf8009f4eb1edb6ac6821c))
+* **qmp:** Uniforme validation ([487e89e](https://github.com/tomasanchez/dds/commit/487e89e89fdcce2a284a912174d760d0c95940f8))
+* **qmp:** updated in-class closes [#2](https://github.com/tomasanchez/dds/issues/2) ([75e6f2c](https://github.com/tomasanchez/dds/commit/75e6f2c4776c5955c443c4ca7820f541cc52cbe0))
+* **verifications:** mvn test ([663b5eb](https://github.com/tomasanchez/dds/commit/663b5eb26d2e8aaeb53f74c1abc132678e9832d3))
+
 ### [0.0.4](https://github.com/tomasanchez/dds/compare/v0.0.3...v0.0.4) (2021-04-24)
 
 
