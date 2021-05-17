@@ -1,12 +1,12 @@
 package quemepongo.model.prenda;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import quemepongo.model.material.TipoMaterial;
-import java.util.ArrayList;
 
 /**
- * Tipos de prendas
+ * Tipos de prendas.
  *
  * @author Tomás Sánchez
  * @version 3.0
@@ -14,15 +14,42 @@ import java.util.ArrayList;
  */
 public enum TipoPrenda {
 
-    LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(
-            Categoria.SUPERIOR), PANTALON_JEAN(Categoria.INFERIOR,
-                    "JEAN"), CHOMBA(Categoria.SUPERIOR), ZAPATOS(Categoria.CALZADO,
-                            "CUERO"), ZAPATILLAS(Categoria.CALZADO,
-                                    "CUERO"), PANTALON(Categoria.INFERIOR, "ALGODON,ACETATO");
+    /**
+     * Tipo Lentes (Accesorio).
+     */
+    LENTES(Categoria.ACCESORIOS),
+    /**
+     * Tipo Remera (Superior).
+     */
+    REMERA_MANGAS_CORTAS(Categoria.SUPERIOR),
+    /**
+     * Tipo Camisa (Superior).
+     */
+    CAMISA(Categoria.SUPERIOR),
+    /**
+     * Tipo Chomba (Superior).
+     */
+    CHOMBA(Categoria.SUPERIOR),
+    /**
+     * Tipo Pantalon (Inferior).
+     */
+    PANTALON_JEAN(Categoria.INFERIOR, "JEAN"),
+    /**
+     * Tipo Pantalon (Inferior).
+     */
+    PANTALON(Categoria.INFERIOR, "ALGODON,ACETATO"),
+    /**
+     * Tipo Zapatos (Inferior).
+     */
+    ZAPATOS(Categoria.CALZADO, "CUERO"),
+    /**
+     * Tipo Zapatillas (Inferior).
+     */
+    ZAPATILLAS(Categoria.CALZADO, "CUERO");
 
     /**
      *
-     * La categoria a la que ese tipo de prenda pertenece
+     * La categoria a la que ese tipo de prenda pertenece.
      *
      *
      * @since 1.0
@@ -30,28 +57,14 @@ public enum TipoPrenda {
     private Categoria categoria;
 
     /**
-     * Determina una categoría de acuerdo al tipo.
-     *
-     * @return la categoria del tipo
-     * @since 1.0
-     */
-    Categoria categoria() {
-        return this.categoria;
-    }
-
-    /**
      * Listado de materiales admitidos por el tipo de prenda.
      *
      * @since 3.0
      */
-    List<TipoMaterial> materiales;
-
-    public boolean admiteMaterial(TipoMaterial material) {
-        return materiales.stream().anyMatch(admitido -> admitido.equals(material));
-    }
+    private List<TipoMaterial> materiales;
 
     /**
-     * Tipos de prenda
+     * Tipos de prenda.
      *
      * @param cat la categoría correspondiente
      * @since 2.0
@@ -75,5 +88,25 @@ public enum TipoPrenda {
 
         Arrays.stream(materialesAdmitidos).map(str -> TipoMaterial.valueOf(str))
                 .forEach(material -> this.materiales.add(material));
+    }
+
+    /**
+     * Determina una categoría de acuerdo al tipo.
+     *
+     * @return la categoria del tipo
+     * @since 1.0
+     */
+    public Categoria categoria() {
+        return this.categoria;
+    }
+
+    /**
+     * Determina si el tipo de prenda soporta el material.
+     *
+     * @param material el material a verificar.
+     * @return si lo acepta o no.
+     */
+    public boolean admiteMaterial(TipoMaterial material) {
+        return materiales.stream().anyMatch(admitido -> admitido.equals(material));
     }
 }
