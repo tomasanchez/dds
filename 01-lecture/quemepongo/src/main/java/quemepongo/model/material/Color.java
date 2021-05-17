@@ -1,7 +1,7 @@
 package quemepongo.model.material;
 
 /**
- * Dominio de colores
+ * Dominio de colores.
  *
  * @author Tomás Sánchez
  * @since 04.25.2021
@@ -14,7 +14,7 @@ public class Color {
      *
      * @since 1.0
      */
-    String codigo;
+    private String codigo;
 
     /**
      * Instancia un color con dicho código.
