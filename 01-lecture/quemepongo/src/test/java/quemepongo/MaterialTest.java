@@ -38,7 +38,7 @@ public class MaterialTest {
     public void materialTramaLisaDefault() {
         // Para todo tipo de material, la trama lisa es la default.
         assertTrue(Arrays.stream(TipoMaterial.values()).map(tipo -> new Material(tipo, null))
-                .allMatch(material -> material.trama.equals(TramaTela.LISA)));
+                .allMatch(material -> material.getTrama().equals(TramaTela.LISA)));
     }
 
 }

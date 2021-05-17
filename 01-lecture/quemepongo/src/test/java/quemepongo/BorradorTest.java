@@ -36,12 +36,12 @@ public class BorradorTest {
         Prenda guardada = bosquejo.guardarPrenda();
 
         // Mismo color
-        assertTrue(camisaAlgodonGris.color1.codigo.equals(guardada.color1.codigo));
+        assertTrue(camisaAlgodonGris.color1.getCodigo().equals(guardada.color1.getCodigo()));
         // Misma trama y además la trama es LISA.
         assertTrue(camisaAlgodonGris.getTrama().equals(guardada.getTrama())
                 && esTramaDefault(guardada));
         // Mismo material
-        assertTrue(camisaAlgodonGris.material.nombre.equals(guardada.material.nombre));
+        assertTrue(camisaAlgodonGris.getMaterial().equals(guardada.material.getMaterial()));
         // Mismo tipo
         assertTrue(camisaAlgodonGris.tipo.equals(guardada.tipo));
     }

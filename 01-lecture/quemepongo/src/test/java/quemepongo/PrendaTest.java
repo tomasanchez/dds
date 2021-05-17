@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Testeo de Prendas
+ * Testeo de Prendas.
  *
  * @version 1.0
  * @since 04.28.2021

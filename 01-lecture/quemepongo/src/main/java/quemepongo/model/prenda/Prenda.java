@@ -61,6 +61,10 @@ public class Prenda {
         return material.getTrama();
     }
 
+    public TipoMaterial getMaterial() {
+        return material.getMaterial();
+    }
+
     /**
      * Setter de color secundario a una prenda.
      *
@@ -98,7 +102,7 @@ public class Prenda {
      * @since 2.0
      */
     public void setMaterial(Material material) {
-        if (!tipo.admiteMaterial(material.nombre))
+        if (!tipo.admiteMaterial(getMaterial()))
             throw new PrendaInvalida("El tipo de prenda no acepta el material indicado");
         else
             this.material = material;

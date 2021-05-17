@@ -33,6 +33,10 @@ public class Material {
         return trama;
     }
 
+    public TipoMaterial getMaterial() {
+        return nombre;
+    }
+
     /**
      * Instancia un material
      *
@@ -76,5 +80,7 @@ public class Material {
             super("Material inválido: " + causa);
         }
     }
+
+
 
 }

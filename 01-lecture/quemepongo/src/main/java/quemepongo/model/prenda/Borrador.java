@@ -66,8 +66,8 @@ public class Borrador {
     public Borrador(Prenda template) {
         if (!Objects.isNull(template)) {
             this.tipo = template.tipo;
-            this.material = template.material.nombre;
-            this.trama = template.material.trama;
+            this.material = template.getMaterial();
+            this.trama = template.getTrama();
             this.color1 = template.color1;
             this.color2 = template.color2;
         }
