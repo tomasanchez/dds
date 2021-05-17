@@ -18,9 +18,9 @@ public class ModistaJhonson extends Modista {
     protected Prenda fabricarPrendaSuperior() {
 
         Borrador bosquejo = new Borrador();
-        bosquejo.especificarTipo(TipoPrenda.CAMISA);
-        bosquejo.especificarMaterial(TipoMaterial.ALGODON);
-        bosquejo.especificarColorPrimario(new Color("#blanco"));
+        bosquejo.setTipo(TipoPrenda.CAMISA);
+        bosquejo.setMaterial(TipoMaterial.ALGODON);
+        bosquejo.setColor1(new Color("#blanco"));
 
         return bosquejo.guardarPrenda();
     }
@@ -29,9 +29,9 @@ public class ModistaJhonson extends Modista {
     protected Prenda fabricarPrendaInferior() {
 
         Borrador bosquejo = new Borrador();
-        bosquejo.especificarTipo(TipoPrenda.PANTALON);
-        bosquejo.especificarMaterial(TipoMaterial.ACETATO);
-        bosquejo.especificarColorPrimario(new Color("#negro"));
+        bosquejo.setTipo(TipoPrenda.PANTALON);
+        bosquejo.setMaterial(TipoMaterial.ACETATO);
+        bosquejo.setColor1(new Color("#negro"));
 
         return bosquejo.guardarPrenda();
     }
@@ -40,9 +40,9 @@ public class ModistaJhonson extends Modista {
     protected Prenda fabricarCalzado() {
 
         Borrador bosquejo = new Borrador();
-        bosquejo.especificarTipo(TipoPrenda.ZAPATOS);
-        bosquejo.especificarMaterial(TipoMaterial.CUERO);
-        bosquejo.especificarColorPrimario(new Color("#negro"));
+        bosquejo.setTipo(TipoPrenda.ZAPATOS);
+        bosquejo.setMaterial(TipoMaterial.CUERO);
+        bosquejo.setColor1(new Color("#negro"));
 
         return bosquejo.guardarPrenda();
     }
