@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import quemepongo.Material.MaterialInvalido;
+import quemepongo.model.material.Material;
+import quemepongo.model.material.TipoMaterial;
+import quemepongo.model.material.TramaTela;
+import quemepongo.model.material.Material.MaterialInvalido;
 
 /**
  * Pruebas de Materiales
@@ -20,7 +22,8 @@ public class MaterialTest {
     @Test
     public void todosPuedenSerLisos() {
         // Todos los materiales aceptan la trama lisa.
-        assertTrue(Arrays.stream(TipoMaterial.values()).allMatch(material -> material.admiteTrama(TramaTela.LISA)));
+        assertTrue(Arrays.stream(TipoMaterial.values())
+                .allMatch(material -> material.admiteTrama(TramaTela.LISA)));
     }
 
     @Test

@@ -1,6 +1,10 @@
-package quemepongo;
+package quemepongo.model.prenda;
 
 import java.util.Objects;
+import quemepongo.model.material.Color;
+import quemepongo.model.material.Material;
+import quemepongo.model.material.TipoMaterial;
+import quemepongo.model.material.TramaTela;
 
 /**
  * Prendas de QuéMePongo
@@ -104,8 +108,8 @@ public class Prenda {
      * Instancia una prenda de un único color
      *
      * @param tipoPrenda el tipo de prenda a crear
-     * @param material   el tipo de material
-     * @param color1     el color principal
+     * @param material el tipo de material
+     * @param color1 el color principal
      * @since Iteracion 2
      */
     public Prenda(TipoPrenda tipoPrenda, TipoMaterial material, Color color1) {
@@ -114,13 +118,14 @@ public class Prenda {
 
     /**
      *
-     * @param tipo     el tipo de prenda a crear
+     * @param tipo el tipo de prenda a crear
      * @param material el material con el que esta hecho
-     * @param trama    la trama del material
+     * @param trama la trama del material
      * @param color1
      * @param color2
      */
-    public Prenda(TipoPrenda tipo, TipoMaterial material, TramaTela trama, Color color1, Color color2) {
+    public Prenda(TipoPrenda tipo, TipoMaterial material, TramaTela trama, Color color1,
+            Color color2) {
 
         // Iteración I
         if (Objects.isNull(tipo))

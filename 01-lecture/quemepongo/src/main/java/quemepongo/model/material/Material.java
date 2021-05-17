@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.material;
 
 import java.util.Objects;
 
@@ -49,7 +49,8 @@ public class Material {
         if (Objects.isNull(trama))
             this.trama = TramaTela.LISA;
         else if (!nombre.admiteTrama(trama))
-            throw new MaterialInvalido(nombre.toString() + " no admite la trama " + trama.toString());
+            throw new MaterialInvalido(
+                    nombre.toString() + " no admite la trama " + trama.toString());
         else
             this.trama = trama;
 

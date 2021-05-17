@@ -1,8 +1,9 @@
-package quemepongo;
+package quemepongo.model.modsita;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import quemepongo.model.atuendo.Uniforme;
 
 /**
  * Recomendador de uniformes

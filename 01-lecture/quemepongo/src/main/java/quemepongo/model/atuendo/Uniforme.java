@@ -1,6 +1,7 @@
-package quemepongo;
+package quemepongo.model.atuendo;
 
 import java.util.Objects;
+import quemepongo.model.prenda.Prenda;
 
 /**
  * Atuendos uniformes
@@ -36,7 +37,7 @@ public class Uniforme {
      *
      * @param superior la prenda superior
      * @param inferior la prenda inferior
-     * @param calzado  el calzado
+     * @param calzado el calzado
      */
     public Uniforme(Prenda superior, Prenda inferior, Prenda calzado) {
 

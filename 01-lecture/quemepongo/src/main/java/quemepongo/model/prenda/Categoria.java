@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.prenda;
 
 /**
  * Dominio de categorías de Prendas
@@ -9,7 +9,8 @@ package quemepongo;
  */
 public enum Categoria {
 
-    ACCESORIOS("Accesorios"), SUPERIOR("Prenda Superior"), INFERIOR("Prenda Inferior"), CALZADO("Calzado");
+    ACCESORIOS("Accesorios"), SUPERIOR("Prenda Superior"), INFERIOR("Prenda Inferior"), CALZADO(
+            "Calzado");
 
     /**
      * La etiqueta a mostrar

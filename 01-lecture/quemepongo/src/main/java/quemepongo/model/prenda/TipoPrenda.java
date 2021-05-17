@@ -1,7 +1,8 @@
-package quemepongo;
+package quemepongo.model.prenda;
 
 import java.util.Arrays;
 import java.util.List;
+import quemepongo.model.material.TipoMaterial;
 import java.util.ArrayList;
 
 /**
@@ -13,9 +14,11 @@ import java.util.ArrayList;
  */
 public enum TipoPrenda {
 
-    LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(Categoria.SUPERIOR),
-    PANTALON_JEAN(Categoria.INFERIOR, "JEAN"), CHOMBA(Categoria.SUPERIOR), ZAPATOS(Categoria.CALZADO, "CUERO"),
-    ZAPATILLAS(Categoria.CALZADO, "CUERO"), PANTALON(Categoria.INFERIOR, "ALGODON,ACETATO");
+    LENTES(Categoria.ACCESORIOS), REMERA_MANGAS_CORTAS(Categoria.SUPERIOR), CAMISA(
+            Categoria.SUPERIOR), PANTALON_JEAN(Categoria.INFERIOR,
+                    "JEAN"), CHOMBA(Categoria.SUPERIOR), ZAPATOS(Categoria.CALZADO,
+                            "CUERO"), ZAPATILLAS(Categoria.CALZADO,
+                                    "CUERO"), PANTALON(Categoria.INFERIOR, "ALGODON,ACETATO");
 
     /**
      *
@@ -60,7 +63,7 @@ public enum TipoPrenda {
     /**
      * Tipo de prenda que admite materiales.
      *
-     * @param categoria  la categoria del tipo de prenda
+     * @param categoria la categoria del tipo de prenda
      * @param materiales los materiales que admite
      */
     TipoPrenda(Categoria categoria, String materiales) {

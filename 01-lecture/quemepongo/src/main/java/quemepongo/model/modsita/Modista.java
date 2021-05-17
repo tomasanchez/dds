@@ -1,4 +1,7 @@
-package quemepongo;
+package quemepongo.model.modsita;
+
+import quemepongo.model.atuendo.Uniforme;
+import quemepongo.model.prenda.Prenda;
 
 /**
  * Factory de Atuendos.
@@ -15,7 +18,8 @@ public abstract class Modista {
      * @since 1.0
      */
     public Uniforme fabricarUniforme() {
-        return new Uniforme(this.fabricarPrendaSuperior(), this.fabricarPrendaInferior(), this.fabricarCalzado());
+        return new Uniforme(this.fabricarPrendaSuperior(), this.fabricarPrendaInferior(),
+                this.fabricarCalzado());
     }
 
     /**

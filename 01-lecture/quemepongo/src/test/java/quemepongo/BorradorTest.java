@@ -4,8 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import quemepongo.Prenda.PrendaInvalida;
+import quemepongo.model.material.Color;
+import quemepongo.model.material.TipoMaterial;
+import quemepongo.model.material.TramaTela;
+import quemepongo.model.prenda.Borrador;
+import quemepongo.model.prenda.Prenda;
+import quemepongo.model.prenda.TipoPrenda;
+import quemepongo.model.prenda.Prenda.PrendaInvalida;
 
 public class BorradorTest {
 
@@ -26,13 +31,15 @@ public class BorradorTest {
         bosquejo.especificarMaterial(TipoMaterial.ALGODON);
         bosquejo.especificarColorPrimario(colorPrueba());
 
-        Prenda camisaAlgodonGris = new Prenda(TipoPrenda.CAMISA, TipoMaterial.ALGODON, colorPrueba());
+        Prenda camisaAlgodonGris =
+                new Prenda(TipoPrenda.CAMISA, TipoMaterial.ALGODON, colorPrueba());
         Prenda guardada = bosquejo.guardarPrenda();
 
         // Mismo color
         assertTrue(camisaAlgodonGris.color1.codigo.equals(guardada.color1.codigo));
         // Misma trama y además la trama es LISA.
-        assertTrue(camisaAlgodonGris.getTrama().equals(guardada.getTrama()) && esTramaDefault(guardada));
+        assertTrue(camisaAlgodonGris.getTrama().equals(guardada.getTrama())
+                && esTramaDefault(guardada));
         // Mismo material
         assertTrue(camisaAlgodonGris.material.nombre.equals(guardada.material.nombre));
         // Mismo tipo

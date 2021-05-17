@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.material;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +12,9 @@ import java.util.ArrayList;
  */
 public enum TipoMaterial {
 
-    JEAN("LISA,ESTAMPADO"), ALGODON("LISA,LUNARES,A_CUADROS"), LINO("LISA"), CUERO("A_CUADROS,LISA,ESTAMPADO"),
-    POLLIESTER("LISA,RAYADA,LUNARES,A_CUADROS,ESTAMPADO"), ACETATO("LISA");
+    JEAN("LISA,ESTAMPADO"), ALGODON("LISA,LUNARES,A_CUADROS"), LINO("LISA"), CUERO(
+            "A_CUADROS,LISA,ESTAMPADO"), POLLIESTER(
+                    "LISA,RAYADA,LUNARES,A_CUADROS,ESTAMPADO"), ACETATO("LISA");
 
     /**
      * Las tramas admitidas
@@ -31,7 +32,8 @@ public enum TipoMaterial {
     TipoMaterial(String tramas) {
         String[] tramasAdmitidasStr = tramas.split(",");
         this.tramas = new ArrayList<TramaTela>();
-        Arrays.stream(tramasAdmitidasStr).map(str -> TramaTela.valueOf(str)).forEach(trama -> this.tramas.add(trama));
+        Arrays.stream(tramasAdmitidasStr).map(str -> TramaTela.valueOf(str))
+                .forEach(trama -> this.tramas.add(trama));
     }
 
     /**

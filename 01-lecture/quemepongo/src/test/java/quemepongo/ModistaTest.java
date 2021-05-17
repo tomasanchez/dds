@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
+import quemepongo.model.atuendo.Uniforme;
+import quemepongo.model.modsita.ModistaJhonson;
+import quemepongo.model.modsita.ModistaSanJuan;
 
 /**
  * Prueba de Modistas

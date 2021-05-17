@@ -1,6 +1,9 @@
-package quemepongo;
+package quemepongo.model.prenda;
 
 import java.util.Objects;
+import quemepongo.model.material.Color;
+import quemepongo.model.material.TipoMaterial;
+import quemepongo.model.material.TramaTela;
 
 /**
  * Builder de prendas.

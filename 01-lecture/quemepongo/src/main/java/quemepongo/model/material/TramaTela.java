@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.material;
 
 /**
  * Dominio de Tramas del Material.

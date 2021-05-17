@@ -1,4 +1,10 @@
-package quemepongo;
+package quemepongo.model.modsita;
+
+import quemepongo.model.material.Color;
+import quemepongo.model.material.TipoMaterial;
+import quemepongo.model.prenda.Borrador;
+import quemepongo.model.prenda.Prenda;
+import quemepongo.model.prenda.TipoPrenda;
 
 /**
  * Factory de Uniformes del Colegio San Juan.

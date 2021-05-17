@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.material;
 
 /**
  * Dominio de colores
@@ -23,6 +23,10 @@ public class Color {
      */
     public Color(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getCodigo() {
+        return codigo;
     }
 
 }
