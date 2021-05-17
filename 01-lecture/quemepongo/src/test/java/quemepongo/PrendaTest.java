@@ -5,8 +5,9 @@ import quemepongo.model.material.Color;
 import quemepongo.model.material.TipoMaterial;
 import quemepongo.model.material.TramaTela;
 import quemepongo.model.prenda.Prenda;
-import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.prenda.Prenda.PrendaInvalida;
+import quemepongo.model.prenda.TipoPrenda;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

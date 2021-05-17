@@ -1,17 +1,16 @@
 package quemepongo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import java.util.Objects;
-
 import org.junit.jupiter.api.Test;
 import quemepongo.model.atuendo.Uniforme;
 import quemepongo.model.modsita.ModistaJhonson;
 import quemepongo.model.modsita.ModistaSanJuan;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 /**
- * Prueba de Modistas
+ * Prueba de Modistas.
  *
  * @since 04.28.2021
  * @version 1.0
@@ -20,7 +19,7 @@ public class ModistaTest {
 
     @Test
     public void creaUniforme() {
-        // Deberian ambos devolver un Uniforme
+        // Deberian ambos devolver un Uniforme.
         assertEquals(Uniforme.class, uniformeJhonson().getClass());
         assertEquals(Uniforme.class, uniformeSanJuan().getClass());
     }
@@ -32,7 +31,7 @@ public class ModistaTest {
     }
 
     /**
-     * Fabrica un uniforme del Modista del Intituto Jhonson
+     * Fabrica un uniforme del Modista del Intituto Jhonson.
      *
      * @return la construccion de un uniforme.
      * @since 1.0

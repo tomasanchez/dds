@@ -1,17 +1,23 @@
 package quemepongo;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 import quemepongo.model.material.Color;
 import quemepongo.model.material.TipoMaterial;
 import quemepongo.model.material.TramaTela;
 import quemepongo.model.prenda.Borrador;
 import quemepongo.model.prenda.Prenda;
-import quemepongo.model.prenda.TipoPrenda;
 import quemepongo.model.prenda.Prenda.PrendaInvalida;
+import quemepongo.model.prenda.TipoPrenda;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * Pruebas de Borrador.
+ *
+ * @version 1.0
+ * @since 04.28.2021
+ */
 public class BorradorTest {
 
     @Test
@@ -36,14 +42,14 @@ public class BorradorTest {
         Prenda guardada = bosquejo.guardarPrenda();
 
         // Mismo color
-        assertTrue(camisaAlgodonGris.color1.getCodigo().equals(guardada.color1.getCodigo()));
+        assertTrue(camisaAlgodonGris.getColor1().equals(guardada.getColor1()));
         // Misma trama y además la trama es LISA.
         assertTrue(camisaAlgodonGris.getTrama().equals(guardada.getTrama())
                 && esTramaDefault(guardada));
         // Mismo material
-        assertTrue(camisaAlgodonGris.getMaterial().equals(guardada.material.getMaterial()));
+        assertTrue(camisaAlgodonGris.getMaterial().equals(guardada.getMaterial()));
         // Mismo tipo
-        assertTrue(camisaAlgodonGris.tipo.equals(guardada.tipo));
+        assertTrue(camisaAlgodonGris.getTipo().equals(guardada.getTipo()));
     }
 
     /**
