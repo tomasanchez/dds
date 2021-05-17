@@ -4,33 +4,32 @@ import java.util.Objects;
 import quemepongo.model.prenda.Prenda;
 
 /**
- * Atuendos uniformes
+ * Atuendos uniformes.
  *
- * @verion 1.1
  * @since 04.27.2021
  */
 public class Uniforme {
 
     /**
-     * Parte superior del conjunto
+     * Parte superior del conjunto.
      *
      * @since 1.0
      */
-    public Prenda superior;
+    private Prenda superior;
 
     /**
-     * Parte inferior del conjunto
+     * Parte inferior del conjunto.
      *
      * @since 1.0
      */
-    public Prenda inferior;
+    private Prenda inferior;
 
     /**
-     * Calzado del conjunto
+     * Calzado del conjunto.
      *
      * @since 1.0
      */
-    public Prenda calzado;
+    private Prenda calzado;
 
     /**
      * Instancia un nuevo uniforme dado sus tres componentes.
@@ -41,12 +40,8 @@ public class Uniforme {
      */
     public Uniforme(Prenda superior, Prenda inferior, Prenda calzado) {
 
-        if (Objects.isNull(superior))
-            throw new UniformeInvalido("No puede faltar una parte superior");
-        if (Objects.isNull(inferior))
-            throw new UniformeInvalido("No puede faltar una parte inferior");
-        if (Objects.isNull(calzado))
-            throw new UniformeInvalido("No puede faltar calzado");
+        validarConsistencia(superior, inferior, calzado);
+
 
         this.superior = superior;
         this.inferior = inferior;
@@ -54,7 +49,30 @@ public class Uniforme {
     }
 
     /**
-     * Runtime Exceptions por Uniforme Inválido
+     * Valida que no se instancie un uniforme sin alguna prenda.
+     *
+     * @param s una prenda de categoria superior.
+     * @param i una prenda de categoria inferior.
+     * @param c una prenda de categoria calzado.
+     * @throws UniformeInvalido de faltar alguna prenda.
+     */
+    private void validarConsistencia(Prenda s, Prenda i, Prenda c) {
+
+        if (Objects.isNull(s)) {
+            throw new UniformeInvalido("No puede faltar una parte superior");
+        }
+
+        if (Objects.isNull(i)) {
+            throw new UniformeInvalido("No puede faltar una parte inferior");
+        }
+
+        if (Objects.isNull(c)) {
+            throw new UniformeInvalido("No puede faltar calzado");
+        }
+    }
+
+    /**
+     * Runtime Exceptions por Uniforme Inválido.
      *
      * @throws RuntimeException Por no poder crear el uniforme.
      * @since 1.1
@@ -64,4 +82,29 @@ public class Uniforme {
             super("El uniforme es inválido: " + causa);
         }
     }
+
+    public Prenda getSuperior() {
+        return superior;
+    }
+
+    public void setSuperior(Prenda superior) {
+        this.superior = superior;
+    }
+
+    public Prenda getInferior() {
+        return inferior;
+    }
+
+    public void setInferior(Prenda inferior) {
+        this.inferior = inferior;
+    }
+
+    public Prenda getCalzado() {
+        return calzado;
+    }
+
+    public void setCalzado(Prenda calzado) {
+        this.calzado = calzado;
+    }
+
 }
