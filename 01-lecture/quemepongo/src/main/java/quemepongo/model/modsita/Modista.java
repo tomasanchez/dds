@@ -12,7 +12,7 @@ import quemepongo.model.prenda.Prenda;
 public abstract class Modista {
 
     /**
-     * Fabrica un uniforme
+     * Fabrica un uniforme.
      *
      * @return un nuevo uniforme
      * @since 1.0
@@ -23,7 +23,7 @@ public abstract class Modista {
     }
 
     /**
-     * Fabrica la parte superior
+     * Fabrica la parte superior.
      *
      * @return una prenda de categoria Prenda Superior.
      * @since 1.0
@@ -31,7 +31,7 @@ public abstract class Modista {
     protected abstract Prenda fabricarPrendaSuperior();
 
     /**
-     * Fabrica la parte inferior
+     * Fabrica la parte inferior.
      *
      * @return una prenda de categoria Prenda Inferior.
      * @since 1.0
