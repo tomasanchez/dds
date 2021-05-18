@@ -1,5 +1,6 @@
 package quemepongo.model.modista;
 
+import quemepongo.model.atuendo.Atuendo;
 import quemepongo.model.atuendo.Conjunto;
 import quemepongo.model.atuendo.Uniforme;
 import quemepongo.model.prenda.Prenda;
@@ -20,6 +21,16 @@ public abstract class Modista {
      */
     public Uniforme fabricarUniforme() {
         return new Uniforme(fabricarConjunto());
+    }
+
+    /**
+     * Fabrica un atuendo.
+     *
+     * @return un nuevo atuendo
+     * @since Iteración IV
+     */
+    public Atuendo fabricarAtuendo() {
+        return new Atuendo(fabricarConjunto());
     }
 
     /**
