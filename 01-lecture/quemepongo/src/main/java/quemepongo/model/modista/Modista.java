@@ -1,4 +1,4 @@
-package quemepongo.model.modsita;
+package quemepongo.model.modista;
 
 import quemepongo.model.atuendo.Uniforme;
 import quemepongo.model.prenda.Prenda;

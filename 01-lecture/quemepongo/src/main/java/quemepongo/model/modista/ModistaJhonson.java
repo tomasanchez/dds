@@ -1,4 +1,4 @@
-package quemepongo.model.modsita;
+package quemepongo.model.modista;
 
 import quemepongo.model.material.Color;
 import quemepongo.model.material.TipoMaterial;

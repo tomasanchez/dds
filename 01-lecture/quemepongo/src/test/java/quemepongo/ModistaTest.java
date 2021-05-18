@@ -3,8 +3,8 @@ package quemepongo;
 import java.util.Objects;
 import org.junit.jupiter.api.Test;
 import quemepongo.model.atuendo.Uniforme;
-import quemepongo.model.modsita.ModistaJhonson;
-import quemepongo.model.modsita.ModistaSanJuan;
+import quemepongo.model.modista.ModistaJhonson;
+import quemepongo.model.modista.ModistaSanJuan;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

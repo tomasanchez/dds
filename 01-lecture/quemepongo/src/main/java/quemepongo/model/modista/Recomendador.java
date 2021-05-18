@@ -1,4 +1,4 @@
-package quemepongo.model.modsita;
+package quemepongo.model.modista;
 
 import java.util.ArrayList;
 import java.util.List;
