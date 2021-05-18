@@ -10,63 +10,37 @@ import quemepongo.model.prenda.Prenda;
  */
 public class Uniforme {
 
-    /**
-     * Parte superior del conjunto.
-     *
-     * @since 1.0
-     */
-    private Prenda superior;
-
-    /**
-     * Parte inferior del conjunto.
-     *
-     * @since 1.0
-     */
-    private Prenda inferior;
-
-    /**
-     * Calzado del conjunto.
-     *
-     * @since 1.0
-     */
-    private Prenda calzado;
+    private Conjunto conjunto;
 
     /**
      * Instancia un nuevo uniforme dado sus tres componentes.
      *
-     * @param superior la prenda superior
-     * @param inferior la prenda inferior
-     * @param calzado el calzado
+     * @param conjunto el conjunto de prendas
      */
-    public Uniforme(Prenda superior, Prenda inferior, Prenda calzado) {
+    public Uniforme(Conjunto conjunto) {
 
-        validarConsistencia(superior, inferior, calzado);
+        validarConsistencia(conjunto);
 
-
-        this.superior = superior;
-        this.inferior = inferior;
-        this.calzado = calzado;
+        this.conjunto = conjunto;
     }
 
     /**
      * Valida que no se instancie un uniforme sin alguna prenda.
      *
-     * @param s una prenda de categoria superior.
-     * @param i una prenda de categoria inferior.
-     * @param c una prenda de categoria calzado.
+     * @param c el conjunto de prendas
      * @throws UniformeInvalido de faltar alguna prenda.
      */
-    private void validarConsistencia(Prenda s, Prenda i, Prenda c) {
+    private void validarConsistencia(Conjunto c) {
 
-        if (Objects.isNull(s)) {
+        if (Objects.isNull(c.getSuperior())) {
             throw new UniformeInvalido("No puede faltar una parte superior");
         }
 
-        if (Objects.isNull(i)) {
+        if (Objects.isNull(c.getInferior())) {
             throw new UniformeInvalido("No puede faltar una parte inferior");
         }
 
-        if (Objects.isNull(c)) {
+        if (Objects.isNull(c.getCalzado())) {
             throw new UniformeInvalido("No puede faltar calzado");
         }
     }
@@ -84,27 +58,22 @@ public class Uniforme {
     }
 
     public Prenda getSuperior() {
-        return superior;
-    }
-
-    public void setSuperior(Prenda superior) {
-        this.superior = superior;
+        return conjunto.getSuperior();
     }
 
     public Prenda getInferior() {
-        return inferior;
-    }
-
-    public void setInferior(Prenda inferior) {
-        this.inferior = inferior;
+        return conjunto.getInferior();
     }
 
     public Prenda getCalzado() {
-        return calzado;
+        return conjunto.getCalzado();
     }
 
-    public void setCalzado(Prenda calzado) {
-        this.calzado = calzado;
+    public Conjunto getConjunto() {
+        return conjunto;
     }
 
+    public void setConjunto(Conjunto conjunto) {
+        this.conjunto = conjunto;
+    }
 }

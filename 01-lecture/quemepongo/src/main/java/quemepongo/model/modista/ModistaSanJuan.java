@@ -47,4 +47,9 @@ public class ModistaSanJuan extends Modista {
         return bosquejo.guardarPrenda();
     }
 
+    @Override
+    protected Prenda fabricarAccesorio() {
+        return null;
+    }
+
 }
