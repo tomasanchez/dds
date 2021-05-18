@@ -18,12 +18,12 @@ public class Atuendo {
         this.conjunto = conjunto;
     }
 
-    public Conjunto getAccesorio() {
+    public Conjunto getConjunto() {
         return conjunto;
     }
 
-    public Atuendo setConjunto(Conjunto conjunto) {
-        this.conjunto = conjunto;
+    public Atuendo setConjunto(Conjunto conj) {
+        this.conjunto = conj;
         return this;
     }
 
