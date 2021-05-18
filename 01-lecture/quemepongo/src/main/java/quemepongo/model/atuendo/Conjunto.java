@@ -2,6 +2,12 @@ package quemepongo.model.atuendo;
 
 import quemepongo.model.prenda.Prenda;
 
+/**
+ * Atuendos de Vestir.
+ *
+ * @since 05.18.2021
+ * @version Iteración IV.
+ */
 public class Conjunto {
 
     /**
@@ -32,6 +38,14 @@ public class Conjunto {
      */
     private Prenda accesorio;
 
+    /**
+     * Instancia un Conjunto de prendas.
+     *
+     * @param superior la prenda de categoria superior
+     * @param inferior la prenda de categoria inferior
+     * @param calzado una prenda de categoria calzado
+     * @param accesorio una prenda de categoria accesorio
+     */
     public Conjunto(Prenda superior, Prenda inferior, Prenda calzado, Prenda accesorio) {
         this.superior = superior;
         this.inferior = inferior;
