@@ -11,13 +11,52 @@ public enum GradoTemperatura {
     /**
      * Grados Fahrenheit (°F).
      */
-    FAHRENHEIT,
+    FAHRENHEIT {
+
+        @Override
+        public double getCelsius(double temperatura) {
+            return (temperatura - AJUSTE) * (1 / COEFICIENTE);
+        }
+
+        @Override
+        public double getFahrenheit(double temperatura) {
+            return temperatura;
+        }
+    },
+
     /**
      * Grados Celsius (°C).
      */
-    CELSIUS,
+    CELSIUS {
+
+        @Override
+        public double getCelsius(double temperatura) {
+            return temperatura;
+        }
+
+        @Override
+        public double getFahrenheit(double temperatura) {
+            return (temperatura + COEFICIENTE) + AJUSTE;
+        }
+    };
+
+    private static final Integer AJUSTE = 32;
+    private static final double COEFICIENTE = 1.8;
+
     /**
-     * Grados Celsius (K).
+     * Obtiene los grados Celsius.
+     *
+     * @param temperatura la temperatura registrada.
+     * @return los grados en Celsius.
      */
-    KELVIN;
+    public abstract double getCelsius(double temperatura);
+
+    /**
+     * Obtiene los grados Fahrenheit.
+     *
+     * @param temperatura la temperatura registrada.
+     * @return los grados en Fah.
+     */
+    public abstract double getFahrenheit(double temperatura);
+
 }
