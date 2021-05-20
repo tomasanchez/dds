@@ -1,5 +1,7 @@
 package quemepongo.model.clima;
 
+import java.util.Arrays;
+
 /**
  * Tipos de Clima.
  *
@@ -84,10 +86,11 @@ public enum Clima {
     /**
      * Determina el clima según la temperatura.
      *
-     * @param celsius los grados en Celsius
+     * @param temperatura la temperatura
      * @return el Clima
      */
-    public static Clima determinarClima(double celsius) {
-        return Clima.FRIO;
+    public static Clima determinarClima(Temperatura temperatura) {
+        return Arrays.stream(Clima.values()).filter(clima -> clima.cumple(temperatura)).findFirst()
+                .get();
     }
 }
