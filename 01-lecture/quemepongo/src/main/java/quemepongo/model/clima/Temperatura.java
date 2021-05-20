@@ -8,11 +8,28 @@ package quemepongo.model.clima;
  */
 public class Temperatura {
 
+    /**
+     * La unidad de medición.
+     *
+     * @since Iteración IV
+     */
     private GradoTemperatura unidad = GradoTemperatura.CELSIUS;
+
+    /**
+     * El valor en grados.
+     *
+     * @since Iteración IV
+     */
     private double grados;
 
     public Temperatura() {}
 
+    /**
+     * Instancia una temperatura en la unidad dada.
+     *
+     * @param unidad la unidad de medición
+     * @param grados los valores de temperatura
+     */
     public Temperatura(GradoTemperatura unidad, double grados) {
         this.unidad = unidad;
         this.grados = grados;
@@ -26,7 +43,12 @@ public class Temperatura {
         return grados;
     }
 
-    public Clima determinarClima() {
-        return Clima.FRIO;
+    public double getCelcius() {
+        return unidad.getCelsius(grados);
     }
+
+    public double getFahrenheit() {
+        return unidad.getFahrenheit(grados);
+    }
+
 }
