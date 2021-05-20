@@ -92,3 +92,93 @@ abstract class Modista{
 ```
 
 Por lo cual, una solución sería que el `Recomendador`utilice un `Modista` que fabrique un atuendo para recomendar.
+
+### Prendas acordes a la temperatura actual
+
+De manera análoga a cómo recomendabamos uniformes...
+
+![atuendos climaticos](images/qmp-iteration-4-3.png)
+
+Una solución: aprovechar el factory `Modista`, creando una subclase, `ModistaDeTemporada`, que se encargue de fabricar los atuendos.
+
+Para ello utilizará el `Pronóstico` anterior, el cual permite obtener el `Clima`.
+
+Agregaremos una funcionalidad de permitir identificar a las prendas con una `aptitudClimatica` que determine para que clima es apta la prenda. Esto, al igual que con `Categoría` es intrínseco al `TipoPrenda`.
+
+```java
+class ModistaDeTemporada extends Modista{
+  // Este pronóstico utiliza el servicio climático por defecto.
+  private Clima pronositco = new Pronostico();
+
+  private Prenda bosquejarClimaticamente(Categoria categoria){
+      return new Bosquejo()
+                  .setTipo(getTipoClimatico(categoria))
+                  .setMaterial(getMaterialClima())
+                  .setColor1(getColorDelClima())
+                  .guardarPrenda();
+  }
+
+  private TipoPrenda getTipoClimatico(){
+    Clima actual = pronostico.getBuenosAires().getClima();
+
+    //Delego en Tipo Prenda obtener un elemento random que cumpla
+    return TipoPrenda
+              .getRandom( tipo ->
+                          tipo.aptoClima(actual)
+                        );
+  }
+
+  @Override
+  public Prenda fabricarPrendaSuperior(){
+      return bosquejarClimaticamente(Categoria.SUPERIOR);
+  }
+
+  @Override
+  public Prenda fabricarPrendaInferior(){
+      return bosquejarClimaticamente(Categoria.INFERIOR);
+  }
+
+  // Y así con el resto...
+
+}
+```
+
+### Configurar fácilmente diferentes servicios de obtención del clima
+
+![pronostico](images/qmp-iteration-4-4.png)
+
+Recordamos para obtener la conidición climática utilizamos un `Pronostico`:
+
+```java
+class Pronostico{
+
+  private ClimaService servicio;
+
+  public CondicionClimatica getFromBuenosAires(){
+    return getFrom("Buenos Aires");
+  }
+
+  public CondicionCimatica getFrom(String lugar){
+    return servicio.getWeather(lugar);
+  }
+}
+```
+
+Utiliza un `ClimaService` para poder obtener las condiciones climaticas.
+
+```java
+public interface ClimaService{
+
+  CondicionClimatica getWeather(String lugar);
+}
+```
+
+Por lo cual, podría utilizar cualquier servicio, siempre y cuando se acomode a ajustar la interpretación de los datos.
+
+Un ejemplo sería:
+
+```java
+new Pronostico(new WeatherAPI());
+```
+
+Por default utilizaría el servicio de `AccuWeatherAPI`.
