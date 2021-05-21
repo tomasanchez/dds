@@ -23,7 +23,7 @@ public enum TipoPrenda {
     /**
      * Tipo Remera (Superior).
      */
-    REMERA_MANGAS_CORTAS(Categoria.SUPERIOR),
+    REMERA_MANGAS_CORTAS(Categoria.SUPERIOR, Clima.AGRADABLE),
     /**
      * Tipo Camisa (Superior).
      */
@@ -31,7 +31,7 @@ public enum TipoPrenda {
     /**
      * Tipo Chomba (Superior).
      */
-    CHOMBA(Categoria.SUPERIOR),
+    CHOMBA(Categoria.SUPERIOR, Clima.AGRADABLE),
     /**
      * Tipo Pantalon (Inferior).
      */
