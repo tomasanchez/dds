@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/tomasanchez/dds/compare/v0.0.5...v0.1.0) (2021-05-21)
+
+
+### Features
+
+* **modista:** new modista ([84e2b0e](https://github.com/tomasanchez/dds/commit/84e2b0edcbcd60b95c08454340a02f4a31727368))
+* **qmp:** accuweather API ([1798fca](https://github.com/tomasanchez/dds/commit/1798fca5c3dd4ead050a0cd09cd28d9f06ae6fb0))
+* **qmp:** climatic considerations ([e800255](https://github.com/tomasanchez/dds/commit/e80025571bc24965d449904a3540fb3e1b305f5e))
+* **qmp:** now allows to build Atuendo ([5b2cba0](https://github.com/tomasanchez/dds/commit/5b2cba05ec7dcfc321861fb50c771fc9228d31e2))
+
+
+### Bug Fixes
+
+* **checkstyle:** renamed to match ([1a98d85](https://github.com/tomasanchez/dds/commit/1a98d85813f28fa4c793a723d828a5192aa6f99f))
+
 ### [0.0.5](https://github.com/tomasanchez/dds/compare/v0.0.4...v0.0.5) (2021-05-17)
 
 
