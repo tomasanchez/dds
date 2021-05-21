@@ -164,6 +164,15 @@ public enum TipoPrenda {
     }
 
     /**
+     * Obtiene cualquier material compatible.
+     *
+     * @return un material compatible
+     */
+    public TipoMaterial getMaterialCompatible() {
+        return materiales.stream().findAny().get();
+    }
+
+    /**
      * Obtiene un tipo de prenda al azar, que cumpla con categoria y clima.
      *
      * @param categoria la categoria de la prenda
