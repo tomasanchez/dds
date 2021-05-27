@@ -54,7 +54,7 @@ class Guardarropa{
 
 Modificamos levemente nuestro `Usuario`
 
-![condicion climatica](images/qmp-iteration-5-2.png)
+![guardarropas compartidos](images/qmp-iteration-5-2.png)
 
 Consideramos necesario poder identificar a quién pertenece el `Guardarropa` compartido.
 
@@ -84,5 +84,56 @@ class Usuario{
     guardarropas.put(criterio, guardarropa);
   }
 
+}
+```
+
+### Tentativas
+
+![tentativas](images/qmp-iteration-5-3.png)
+
+Primero definimos `Tentativa` como:
+
+```java
+abstract class Tentativa{
+  private Prenda tentativa;
+
+  public getTentativa(){ return this.tentativa; }
+  public categoria(){ return this.getTentativa().categoria();}
+
+  protected abstract void aceptarTentativa(Set<Prenda> prendas);
+  protected abstract void deshacercambios(Set<Prenda> prendas);
+}
+```
+
+#### Que otro usuario me proponga tentativamente agregar una prenda al guardarropas.
+
+Para no recaer en _Type checks_ utilizamos `TentativaAgregar`
+
+```java
+class TentativaAgregar extends Tentativa{
+
+  @Override
+  void aceptarTentativa(Set<Prenda> prendas){
+    prendas.add(getTentativa());
+  }
+
+  @Override
+  void deshacercambios(Set<Prenda> prendas){
+    prendas.remove(getTentativa());
+  }
+
+}
+```
+
+Por lo cual si un usuario quisiera realizar una tentativa:
+
+```java
+class Usuario{
+
+  void proponerAgregar(Guardarropa guardarropa,Prenda prenda){
+    // Verifico si puedo utilizar ese guardarropa
+    validarAcceso(guardarropa);
+    guardarropa.recibirTentativa(new TentativaAgregar(prenda));
+  }
 }
 ```
