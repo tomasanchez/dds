@@ -1,6 +1,7 @@
 package quemepongo.model.usuario.guardarropa;
 
 import java.util.Set;
+import quemepongo.model.prenda.Categoria;
 import quemepongo.model.prenda.Prenda;
 
 /**
@@ -28,6 +29,10 @@ public abstract class SugerenciaGuardarropa {
 
     public void setCambioSugerido(Prenda cambioSugerido) {
         this.cambioSugerido = cambioSugerido;
+    }
+
+    public Categoria categoria() {
+        return this.cambioSugerido.categoria();
     }
 
     /**

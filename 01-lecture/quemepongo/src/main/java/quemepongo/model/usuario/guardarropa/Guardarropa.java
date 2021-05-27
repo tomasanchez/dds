@@ -20,19 +20,23 @@ public class Guardarropa {
      *
      * @since Iteración V
      */
-    Map<Categoria, Set<Prenda>> prendas = new HashMap<Categoria, Set<Prenda>>();
+    private Map<Categoria, Set<Prenda>> prendas = new HashMap<Categoria, Set<Prenda>>();
 
     /**
      * ModificacionesAceptadas.
+     *
+     * @since Iteración V
      */
-    Set<SugerenciaGuardarropa> sugerenciasAceptadas = new LinkedHashSet<SugerenciaGuardarropa>();
+    private Set<SugerenciaGuardarropa> sugerenciasAceptadas =
+            new LinkedHashSet<SugerenciaGuardarropa>();
 
     /**
      * Prendas Sugeridas.
      *
      * @since Iteración V
      */
-    Set<SugerenciaGuardarropa> sugerenciasPendientes = new LinkedHashSet<SugerenciaGuardarropa>();
+    private Set<SugerenciaGuardarropa> sugerenciasPendientes =
+            new LinkedHashSet<SugerenciaGuardarropa>();
 
     public Guardarropa() {
 
@@ -41,6 +45,47 @@ public class Guardarropa {
         for (Categoria categoria : categorias) {
             prendas.put(categoria, new LinkedHashSet<Prenda>());
         }
+    }
+
+    public Set<SugerenciaGuardarropa> getSugerencias() {
+        return this.sugerenciasPendientes;
+    }
+
+    /**
+     * Deshace las sugerencias aceptadas.
+     *
+     * @since Iteración V
+     */
+    public void deshacerCambios() {
+        sugerenciasAceptadas.forEach(
+                sugerencia -> sugerencia.deshacerSugerencia(getPrendas(sugerencia.categoria())));
+        sugerenciasAceptadas.clear();
+    }
+
+    /**
+     * Acepta un cambio sugerido.
+     *
+     * @param sugerencia el cambio sugerido.
+     */
+    public void aceptarSugerencia(SugerenciaGuardarropa sugerencia) {
+
+        sugerenciasPendientes.remove(sugerencia);
+        sugerencia.aceptarSugerencia(getPrendas(sugerencia.categoria()));
+    }
+
+    public Guardarropa recibirSugerencia(SugerenciaGuardarropa sugerencia) {
+        sugerenciasPendientes.add(sugerencia);
+        return this;
+    }
+
+    /**
+     * Obtiene las pendas de una categoria.
+     *
+     * @param categoria la categoria de la cual obtener
+     * @return una lista de prendas
+     */
+    public Set<Prenda> getPrendas(Categoria categoria) {
+        return this.prendas.get(categoria);
     }
 
     /**
@@ -52,7 +97,7 @@ public class Guardarropa {
      */
     public Guardarropa agregarPrenda(Prenda prenda) {
 
-        Set<Prenda> prendasDeCategoria = prendas.get(prenda.categoria());
+        Set<Prenda> prendasDeCategoria = getPrendas(prenda.categoria());
         prendasDeCategoria.add(prenda);
 
         return this;

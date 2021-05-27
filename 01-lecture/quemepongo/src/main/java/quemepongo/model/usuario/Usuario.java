@@ -2,7 +2,12 @@ package quemepongo.model.usuario;
 
 import java.util.HashMap;
 import java.util.Map;
+import quemepongo.excepcion.usuario.UsuarioSinAccesoAGuardarropaException;
+import quemepongo.model.prenda.Prenda;
 import quemepongo.model.usuario.guardarropa.Guardarropa;
+import quemepongo.model.usuario.guardarropa.SugerenciaAgregar;
+import quemepongo.model.usuario.guardarropa.SugerenciaGuardarropa;
+import quemepongo.model.usuario.guardarropa.SugerenciaQuitar;
 
 /**
  * Usuario de Que me Pongo.
@@ -67,6 +72,54 @@ public class Usuario {
         agregarGuardarropaCompartido(usuario, criterio);
 
         return this;
+    }
+
+    /**
+     * Sugiere aceptar una prenda
+     *
+     * @param guardarropa el guardarropas el cual sugerir.
+     * @param prenda la prenda sugerida
+     * @since Iteración V
+     */
+    public void sugerirAgregar(Guardarropa guardarropa, Prenda prenda) {
+        sugerir(guardarropa, new SugerenciaAgregar(prenda));
+    }
+
+    /**
+     * Sugiere quitar una prenda
+     *
+     * @param guardarropa el guardarropas el cual sugerir.
+     * @param prenda la prenda sugerida
+     * @since Iteración V
+     */
+    public void sugerirQuitar(Guardarropa guardarropa, Prenda prenda) {
+        sugerir(guardarropa, new SugerenciaQuitar(prenda));
+    }
+
+    /**
+     * Realiza una sugerencia.
+     *
+     * @param guardarropa el guardarropas el cual sugerir.
+     * @param prenda la prenda sugerida
+     * @since Iteración V
+     */
+    private void sugerir(Guardarropa guardarropa, SugerenciaGuardarropa sugerencia) {
+        verificarAcceso(guardarropa);
+        guardarropa.recibirSugerencia(sugerencia);
+    }
+
+    /**
+     * Valida si se puede accedes al guardarropas.
+     *
+     * @param guardarropa el guardarropas el cuial validar.
+     * @throws UsuarioSinAccesoAGuardarropaException si no se le compartio el guardarropa
+     * @since Iteración V
+     */
+    private void verificarAcceso(Guardarropa guardarropa) {
+        if (!guardarropasDeOtros.values().stream()
+                .anyMatch(guardarropas -> guardarropas.containsValue(guardarropa))) {
+            throw new UsuarioSinAccesoAGuardarropaException();
+        }
     }
 
     /**
