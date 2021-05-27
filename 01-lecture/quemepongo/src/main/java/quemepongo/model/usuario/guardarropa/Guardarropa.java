@@ -45,8 +45,18 @@ public class Guardarropa {
         }
     }
 
-    public Set<Tentativa> gettentativas() {
+    public Set<Tentativa> getTentativas() {
         return this.tentativasPendientes;
+    }
+
+    /**
+     * Dice si posee una prenda
+     *
+     * @param prenda la prenda que buscar
+     * @return si la posee o no
+     */
+    public boolean tienePrenda(Prenda prenda) {
+        return getPrendas(prenda.categoria()).stream().anyMatch(p -> p.equals(prenda));
     }
 
     /**
@@ -69,6 +79,7 @@ public class Guardarropa {
 
         tentativasPendientes.remove(tentativa);
         tentativa.aceptarTentativa(getPrendas(tentativa.categoria()));
+        tentativasAceptadas.add(tentativa);
     }
 
     public Guardarropa recibirTentativa(Tentativa tentativa) {
