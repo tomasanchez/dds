@@ -22,6 +22,18 @@ public class Guardarropa {
      */
     Map<Categoria, Set<Prenda>> prendas = new HashMap<Categoria, Set<Prenda>>();
 
+    /**
+     * ModificacionesAceptadas.
+     */
+    Set<SugerenciaGuardarropa> sugerenciasAceptadas = new LinkedHashSet<SugerenciaGuardarropa>();
+
+    /**
+     * Prendas Sugeridas.
+     *
+     * @since Iteración V
+     */
+    Set<SugerenciaGuardarropa> sugerenciasPendientes = new LinkedHashSet<SugerenciaGuardarropa>();
+
     public Guardarropa() {
 
         Categoria[] categorias = Categoria.values();
