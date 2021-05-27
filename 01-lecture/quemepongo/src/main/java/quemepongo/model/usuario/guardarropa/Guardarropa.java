@@ -27,16 +27,14 @@ public class Guardarropa {
      *
      * @since Iteración V
      */
-    private Set<SugerenciaGuardarropa> sugerenciasAceptadas =
-            new LinkedHashSet<SugerenciaGuardarropa>();
+    private Set<Tentativa> tentativasAceptadas = new LinkedHashSet<Tentativa>();
 
     /**
      * Prendas Sugeridas.
      *
      * @since Iteración V
      */
-    private Set<SugerenciaGuardarropa> sugerenciasPendientes =
-            new LinkedHashSet<SugerenciaGuardarropa>();
+    private Set<Tentativa> tentativasPendientes = new LinkedHashSet<Tentativa>();
 
     public Guardarropa() {
 
@@ -47,34 +45,34 @@ public class Guardarropa {
         }
     }
 
-    public Set<SugerenciaGuardarropa> getSugerencias() {
-        return this.sugerenciasPendientes;
+    public Set<Tentativa> gettentativas() {
+        return this.tentativasPendientes;
     }
 
     /**
-     * Deshace las sugerencias aceptadas.
+     * Deshace las tentativas aceptadas.
      *
      * @since Iteración V
      */
     public void deshacerCambios() {
-        sugerenciasAceptadas.forEach(
-                sugerencia -> sugerencia.deshacerSugerencia(getPrendas(sugerencia.categoria())));
-        sugerenciasAceptadas.clear();
+        tentativasAceptadas
+                .forEach(tentativa -> tentativa.deshacerCambios(getPrendas(tentativa.categoria())));
+        tentativasAceptadas.clear();
     }
 
     /**
      * Acepta un cambio sugerido.
      *
-     * @param sugerencia el cambio sugerido.
+     * @param tentativa el cambio sugerido.
      */
-    public void aceptarSugerencia(SugerenciaGuardarropa sugerencia) {
+    public void aceptarTentativa(Tentativa tentativa) {
 
-        sugerenciasPendientes.remove(sugerencia);
-        sugerencia.aceptarSugerencia(getPrendas(sugerencia.categoria()));
+        tentativasPendientes.remove(tentativa);
+        tentativa.aceptarTentativa(getPrendas(tentativa.categoria()));
     }
 
-    public Guardarropa recibirSugerencia(SugerenciaGuardarropa sugerencia) {
-        sugerenciasPendientes.add(sugerencia);
+    public Guardarropa recibirTentativa(Tentativa tentativa) {
+        tentativasPendientes.add(tentativa);
         return this;
     }
 

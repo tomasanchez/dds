@@ -10,29 +10,29 @@ import quemepongo.model.prenda.Prenda;
  * @since 05.27.2021
  * @version 1.0
  */
-public abstract class SugerenciaGuardarropa {
+public abstract class Tentativa {
 
-    private Prenda cambioSugerido;
+    private Prenda tentativa;
 
     /**
      * Sugiere una prenda a cambiar
      *
-     * @param cambioSugerido la prenda a eliminar
+     * @param tentativa la prenda a eliminar
      */
-    public SugerenciaGuardarropa(Prenda cambioSugerido) {
-        this.cambioSugerido = cambioSugerido;
+    public Tentativa(Prenda tentativa) {
+        this.tentativa = tentativa;
     }
 
-    public Prenda getCambioSugerido() {
-        return cambioSugerido;
+    public Prenda getTentativa() {
+        return tentativa;
     }
 
-    public void setCambioSugerido(Prenda cambioSugerido) {
-        this.cambioSugerido = cambioSugerido;
+    public void setTentativa(Prenda tentativa) {
+        this.tentativa = tentativa;
     }
 
     public Categoria categoria() {
-        return this.cambioSugerido.categoria();
+        return this.tentativa.categoria();
     }
 
     /**
@@ -41,7 +41,7 @@ public abstract class SugerenciaGuardarropa {
      * @param prendas el listado sobre el cual efectivizar.
      * @since Iteración V
      */
-    protected abstract void aceptarSugerencia(Set<Prenda> prendas);
+    protected abstract void aceptarTentativa(Set<Prenda> prendas);
 
     /**
      * Deshace los cambios de una sugerencia.
@@ -49,5 +49,5 @@ public abstract class SugerenciaGuardarropa {
      * @param prendas el listado sobre el cual efectivizar.
      * @since Iteración V
      */
-    protected abstract void deshacerSugerencia(Set<Prenda> prendas);
+    protected abstract void deshacerCambios(Set<Prenda> prendas);
 }

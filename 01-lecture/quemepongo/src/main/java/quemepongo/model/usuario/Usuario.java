@@ -5,9 +5,9 @@ import java.util.Map;
 import quemepongo.excepcion.usuario.UsuarioSinAccesoAGuardarropaException;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.usuario.guardarropa.Guardarropa;
-import quemepongo.model.usuario.guardarropa.SugerenciaAgregar;
-import quemepongo.model.usuario.guardarropa.SugerenciaGuardarropa;
-import quemepongo.model.usuario.guardarropa.SugerenciaQuitar;
+import quemepongo.model.usuario.guardarropa.TentativaAgregar;
+import quemepongo.model.usuario.guardarropa.Tentativa;
+import quemepongo.model.usuario.guardarropa.TentativaQuitar;
 
 /**
  * Usuario de Que me Pongo.
@@ -82,7 +82,7 @@ public class Usuario {
      * @since Iteración V
      */
     public void sugerirAgregar(Guardarropa guardarropa, Prenda prenda) {
-        sugerir(guardarropa, new SugerenciaAgregar(prenda));
+        sugerir(guardarropa, new TentativaAgregar(prenda));
     }
 
     /**
@@ -93,19 +93,19 @@ public class Usuario {
      * @since Iteración V
      */
     public void sugerirQuitar(Guardarropa guardarropa, Prenda prenda) {
-        sugerir(guardarropa, new SugerenciaQuitar(prenda));
+        sugerir(guardarropa, new TentativaQuitar(prenda));
     }
 
     /**
-     * Realiza una sugerencia.
+     * Realiza una tentativa.
      *
      * @param guardarropa el guardarropas el cual sugerir.
      * @param prenda la prenda sugerida
      * @since Iteración V
      */
-    private void sugerir(Guardarropa guardarropa, SugerenciaGuardarropa sugerencia) {
+    private void sugerir(Guardarropa guardarropa, Tentativa tentativa) {
         verificarAcceso(guardarropa);
-        guardarropa.recibirSugerencia(sugerencia);
+        guardarropa.recibirTentativa(tentativa);
     }
 
     /**
