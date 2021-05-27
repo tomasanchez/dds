@@ -137,3 +137,36 @@ class Usuario{
   }
 }
 ```
+
+#### Que otro usuario me proponga tentativamente quitar una prenda del guardarropas.
+
+```java
+class TentativaQuitar extends Tentativa{
+
+  @Override
+  void aceptarTentativa(Set<Prenda> prendas){
+    prendas.remove(getTentativa());
+  }
+
+  @Override
+  void deshacercambios(Set<Prenda> prendas){
+    prendas.add(getTentativa());
+  }
+
+}
+```
+
+---
+
+Mientras qe por el lado del `Guardarropa`, no distingue si son `TentativaAgregar` o `TentativaQuitar`.
+
+```java
+class Guardarropa{
+
+  Set<Tentativa> tentativasPendientes;
+
+  void recibirTentativa(Tentativa tentativa){
+    tentativasPendientes.add(tentativa);
+  }
+}
+```
