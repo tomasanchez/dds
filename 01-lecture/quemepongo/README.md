@@ -170,3 +170,43 @@ class Guardarropa{
   }
 }
 ```
+
+#### Ver todas las propuestas de modificación (agregar o quitar prendas) del guardarropas y poder aceptarlas o rechazarlas...
+
+Ya tenemos casi todo lo necesario...
+
+```java
+class Guardarropa{
+
+  public Set<Tentativa> getTentativas(){ return this.tentativasPendientes }
+
+  public void aceptarTentativa(Tentativa tentativa){
+    tentativasPendientes.remove(tentativa);
+    // Agrego en la lista correspondiente a la categoria.
+    tentativa.aceptarTentativa(getPrendas(tentativa.categoria()));
+  }
+
+  public void rechazarTentativa(Tentativa tentativa){
+    // Unicamente las borro de la lista
+    tentativasPendientes.remove(tentativa);
+  }
+
+  public Set<Prendas> getPrendas(Categoria categoria){
+    return this.prendas.get(categoria);
+  }
+}
+```
+
+Por lo cual si quisiera agregar una tentativa...
+
+```js
+  Tentativa tentativa = guardarropa
+                          .getTentativas()
+                          .stream()
+                          .findAny()
+                          .get();
+
+   guardarropa.aceptarTentativa(tentativa);
+   // o bien
+   guardarropa.rechazarTentativa(tentativa);
+```
