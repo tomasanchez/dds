@@ -49,3 +49,40 @@ class Guardarropa{
 
 }
 ```
+
+### Crear guardarropas compartidos con otros usuaries
+
+Modificamos levemente nuestro `Usuario`
+
+![condicion climatica](images/qmp-iteration-5-2.png)
+
+Consideramos necesario poder identificar a quién pertenece el `Guardarropa` compartido.
+
+Para además compartir distintos guardarropas, no solamente se necesitaría el `Usuario` dueño del guardarropas sino también el `Criterio` para identificarlo unívocamente.
+
+```java
+class Usuario{
+  // Implementación anterior [...]
+  Map<Usuario, Map<Criterio, Guardarropa>> guardarropasDeOtros;
+
+  public Usuario agregarGuardarropaAjeno(Usuario usuario, Criterio criterio) {
+    siNoExisteAgregarCompartido(usuario);
+    agregarGuardarropaCompartido(usuario, criterio);
+    return this;
+  }
+
+  private void siNoExisteAgregarCompartido(Usuario usuario) {
+    if (!guardarropasDeOtros.containsKey(usuario)) {
+        guardarropasDeOtros.put(usuario, new HashMap<String, Guardarropa>());
+    }
+  }
+
+  private void agregarGuardarropaCompartido(Usuario usuario, String criterio) {
+
+    Map<String, Guardarropa> guardarropas = this.guardarropasDeOtros.get(usuario);
+    Guardarropa guardarropa = usuario.getGuardaropa(criterio);
+    guardarropas.put(criterio, guardarropa);
+  }
+
+}
+```
