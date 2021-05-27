@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/tomasanchez/dds/compare/v0.1.0...v0.2.0) (2021-05-27)
+
+
+### Features
+
+* user makes suggestion ([4d102c8](https://github.com/tomasanchez/dds/commit/4d102c8eb1f72bd239b2b6b363f1edf462ce88bb))
+* **qmp:** suggestion add garment ([92e0051](https://github.com/tomasanchez/dds/commit/92e005187174dd809a2c3e4610f9d828ac023d62))
+* **qmp:** suggestion remove from wardrobe ([a15e3ec](https://github.com/tomasanchez/dds/commit/a15e3ece7b3f34bfafd9a33f3cb5f384691f9771))
+* **qmp:** user of Que Me Pongo ([ee99583](https://github.com/tomasanchez/dds/commit/ee995837fa1e14fd0f3707279398019e2161b6ac))
+* **qmp:** user's wardrobe ([122db8b](https://github.com/tomasanchez/dds/commit/122db8bdb8901a9ad694a3c63f16adb09ecd4bd2))
+* **qmp:** wardrobre suggestions ([5b57f6a](https://github.com/tomasanchez/dds/commit/5b57f6a064fe0c8c0416fbd117bc5918223a8fd1))
+* **tipo:** tipo by clima and categoria ([1e85d65](https://github.com/tomasanchez/dds/commit/1e85d6555599596dd78674459933a5009bd22879))
+
 ## [0.1.0](https://github.com/tomasanchez/dds/compare/v0.0.5...v0.1.0) (2021-05-21)
 
 
