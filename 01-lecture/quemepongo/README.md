@@ -210,3 +210,44 @@ Por lo cual si quisiera agregar una tentativa...
    // o bien
    guardarropa.rechazarTentativa(tentativa);
 ```
+
+#### Poder deshacer las propuestas de modificación que haya aceptado.
+
+Para ello llegamos a considerar necesario llevar tracking de las alternativas aceptadas.
+
+```java
+class Guardarropa{
+
+  Set<Tentativa> tentativasAceptadas;
+
+  public void aceptarTentativa(Tentativa tentativa){
+    tentativasPendientes.remove(tentativa);
+    // Agrego en la lista correspondiente a la categoria.
+    tentativa.aceptarTentativa(getPrendas(tentativa.categoria()));
+    // además guardo en la nueva lista de Tentativas aceptadas
+    tentativasAceptadas.add(tentativa);
+  }
+
+  //Luego para por deshacer los cambios
+  public void deshacerCambios(Tentativa tentativa){
+    // Realizamos el proceso inverso
+    tentativasPendientes.add(tentativa);
+    // Elimino de la lista correspondiente
+    tentativa.deshacerCambios(getPrendas(tentativa.categoria()));
+    tentativasAceptadas.remove(tentativa);
+  }
+
+}
+```
+
+Un ejemplo de uso sería...
+
+```js
+  Tentativa tentativa = guardarropa
+                          .getTentativasAceptadas()
+                          .stream()
+                          .findAny()
+                          .get();
+
+   guardarropa.deshacerCambios(tentativa);
+```
