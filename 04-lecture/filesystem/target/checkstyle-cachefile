@@ -1,0 +1,10 @@
+#Sat May 29 11:37:18 ART 2021
+/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java/fs/exceptions/file/CanNotWriteFileException.java=1622066405557
+configuration*?=3ACF83B2763AAD6B7690312D733728A5B8D5A7EA
+/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java/fs/exceptions/file/CanNotReadFileException.java=1622060916155
+/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java/fs/exceptions/file/CanNotOpenFileException.java=1621998862553
+module-resource*?\:checkstyle-xpath-suppressions.xml=176E4345A6C3E6390E4DC5EA4A67460A25FBE9E0
+module-resource*?\:checkstyle-suppressions.xml=B026C5FA4BA0D86A10CE7F341ADCD947BD5BB112
+/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java/fs/model/file/Buffer.java=1622298221977
+/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java/fs/exceptions/file/CanNotCloseFileException.java=1621998784848
+/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java/fs/model/filesystem/HighLevelFileSystem.java=1622297354157

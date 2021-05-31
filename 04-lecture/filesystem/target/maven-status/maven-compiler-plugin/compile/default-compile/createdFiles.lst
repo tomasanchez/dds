@@ -1,0 +1,8 @@
+fs/model/filesystem/LowLevelFileSystem.class
+fs/model/filesystem/HighLevelFileSystem.class
+fs/exceptions/file/CanNotCloseFileException.class
+fs/model/file/Buffer.class
+fs/model/file/File.class
+fs/exceptions/file/CanNotWriteFileException.class
+fs/exceptions/file/CanNotReadFileException.class
+fs/exceptions/file/CanNotOpenFileException.class

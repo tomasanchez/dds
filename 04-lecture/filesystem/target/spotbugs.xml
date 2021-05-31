@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='4.2.0' threshold='low' effort=''><Error></Error><Project><SrcDir>/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/main/java</SrcDir><SrcDir>/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/target/generated-sources/annotations</SrcDir><SrcDir>/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/src/test/java</SrcDir><SrcDir>/home/tosanchez/Developer/tpi2-sistema-de-archivos-tomasanchez/target/generated-test-sources/test-annotations</SrcDir></Project></BugCollection>
