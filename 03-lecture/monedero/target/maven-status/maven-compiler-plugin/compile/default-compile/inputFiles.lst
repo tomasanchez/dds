@@ -1,0 +1,6 @@
+/home/tosanchez/Developer/dds-monedero-java8/src/main/java/dds/monedero/exceptions/SaldoMenorException.java
+/home/tosanchez/Developer/dds-monedero-java8/src/main/java/dds/monedero/model/Movimiento.java
+/home/tosanchez/Developer/dds-monedero-java8/src/main/java/dds/monedero/exceptions/MaximaCantidadDepositosException.java
+/home/tosanchez/Developer/dds-monedero-java8/src/main/java/dds/monedero/model/Cuenta.java
+/home/tosanchez/Developer/dds-monedero-java8/src/main/java/dds/monedero/exceptions/MaximoExtraccionDiarioException.java
+/home/tosanchez/Developer/dds-monedero-java8/src/main/java/dds/monedero/exceptions/MontoNegativoException.java
