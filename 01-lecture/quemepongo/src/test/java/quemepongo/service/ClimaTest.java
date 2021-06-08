@@ -2,7 +2,7 @@ package quemepongo.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import quemepongo.service.clima.AccuWeatherAPI;
+import quemepongo.api.clima.accuweather.AccuWeatherAPI;
 
 /**
  * Prueba de Climas.
@@ -15,7 +15,7 @@ public class ClimaTest {
     @Test
     public void climaBaires() {
         Assertions.assertDoesNotThrow(() -> {
-            new AccuWeatherAPI().getWeatherForBuenosAires();
+            new AccuWeatherAPI().getWeather("Buenos Aires");
         });
     }
 }
