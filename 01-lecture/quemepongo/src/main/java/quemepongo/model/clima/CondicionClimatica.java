@@ -1,5 +1,7 @@
 package quemepongo.model.clima;
 
+import java.time.LocalDate;
+
 /**
  * Reporte de temperatura, probabilidad de lluvia y clima.
  *
@@ -10,6 +12,7 @@ public class CondicionClimatica {
 
     private Temperatura temperatura = new Temperatura();
     private Clima clima = Clima.FRIO;
+    private LocalDate fecha = LocalDate.now();
     private double precipitaciones;
 
     public CondicionClimatica() {}
@@ -36,6 +39,10 @@ public class CondicionClimatica {
 
     public double getPrecipitaciones() {
         return precipitaciones;
+    }
+
+    public LocalDate getFecha() {
+        return this.fecha;
     }
 
 }

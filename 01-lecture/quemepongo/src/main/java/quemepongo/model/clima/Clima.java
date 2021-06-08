@@ -24,7 +24,7 @@ public enum Clima {
     FRESCO {
         @Override
         protected Boolean cumple(Temperatura temperatura) {
-            return entreTemperaturas(CELSIUS_15, CELSIUS_24, temperatura.getCelcius());
+            return entreTemperaturas(CELSIUS_10, CELSIUS_15, temperatura.getCelcius());
         }
     },
     /**
@@ -33,7 +33,7 @@ public enum Clima {
     TEMPLADO {
         @Override
         protected Boolean cumple(Temperatura temperatura) {
-            return entreTemperaturas(CELSIUS_24, CELSIUS_28, temperatura.getCelcius());
+            return entreTemperaturas(CELSIUS_15, CELSIUS_24, temperatura.getCelcius());
         }
     },
     /**
