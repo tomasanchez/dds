@@ -1,5 +1,6 @@
 package quemepongo.service.clima;
 
+import quemepongo.api.clima.accuweather.AccuWeatherAdapter;
 import quemepongo.model.clima.CondicionClimatica;
 
 /**
@@ -17,4 +18,13 @@ public interface ServicioMetereologico {
      * @return entrega una lista con el clima de las próximas 12 horas en un diccionario.
      */
     CondicionClimatica getCondicionClimatica(String localidad);
+
+    /**
+     * Obtiene el servicio meteorologico actual.
+     *
+     * @return el serivicio por default
+     */
+    static ServicioMetereologico defaultService() {
+        return new AccuWeatherAdapter();
+    }
 }

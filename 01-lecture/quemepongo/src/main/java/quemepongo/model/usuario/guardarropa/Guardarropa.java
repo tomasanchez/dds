@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import quemepongo.model.atuendo.Atuendo;
 import quemepongo.model.prenda.Categoria;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.service.clima.ServicioMetereologico;
+import quemepongo.service.prenda.guardarropa.SugerenciasDeGuardarropa;
 
 /**
  * Guardarropa, repositorio de Prendas.
@@ -36,13 +39,23 @@ public class Guardarropa {
      */
     private Set<Tentativa> tentativasPendientes = new LinkedHashSet<Tentativa>();
 
+    /**
+     * Servicio Meteorologico.
+     *
+     * @since Iteración IV
+     */
+    private ServicioMetereologico servicioMetereologico;
+
+    /**
+     * Servicio de Sugerencias de Atuendos.
+     *
+     * @since Iteración VI
+     */
+    private SugerenciasDeGuardarropa servicioDeSugerencias;
+
     public Guardarropa() {
-
-        Categoria[] categorias = Categoria.values();
-
-        for (Categoria categoria : categorias) {
-            prendas.put(categoria, new LinkedHashSet<Prenda>());
-        }
+        initPrendas();
+        initServicios();
     }
 
     public Set<Tentativa> getTentativas() {
@@ -50,7 +63,16 @@ public class Guardarropa {
     }
 
     /**
-     * Dice si posee una prenda
+     * Sugiere un Atuendo segun condiciones climaticas actuales.
+     *
+     * @return un atuendo.
+     */
+    public Atuendo sugerirAtuendo() {
+        return servicioDeSugerencias.sugerirAtuendo();
+    }
+
+    /**
+     * Dice si posee una prenda.
      *
      * @param prenda la prenda que buscar
      * @return si la posee o no
@@ -110,5 +132,19 @@ public class Guardarropa {
         prendasDeCategoria.add(prenda);
 
         return this;
+    }
+
+    private void initPrendas() {
+        Categoria[] categorias = Categoria.values();
+
+        for (Categoria categoria : categorias) {
+            prendas.put(categoria, new LinkedHashSet<Prenda>());
+        }
+    }
+
+    private void initServicios() {
+        this.servicioMetereologico = ServicioMetereologico.defaultService();
+        this.servicioDeSugerencias =
+                new SugerenciasDeGuardarropa(this.prendas, this.servicioMetereologico);
     }
 }
