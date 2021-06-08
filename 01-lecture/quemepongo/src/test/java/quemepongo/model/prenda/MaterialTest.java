@@ -1,4 +1,4 @@
-package quemepongo;
+package quemepongo.model.prenda;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
