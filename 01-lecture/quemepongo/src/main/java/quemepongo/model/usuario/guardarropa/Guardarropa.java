@@ -40,6 +40,13 @@ public class Guardarropa {
     private Set<Tentativa> tentativasPendientes = new LinkedHashSet<Tentativa>();
 
     /**
+     * Atuendo sugerido.
+     *
+     * @since Iteración VI
+     */
+    private Atuendo sugerenciaDiaria;
+
+    /**
      * Servicio Meteorologico.
      *
      * @since Iteración IV
@@ -68,7 +75,16 @@ public class Guardarropa {
      * @return un atuendo.
      */
     public Atuendo sugerirAtuendo() {
-        return servicioDeSugerencias.sugerirAtuendo();
+        return setSugerenciaDiaria(servicioDeSugerencias.sugerirAtuendo()).getSugerenciaDiaria();
+    }
+
+    public Atuendo getSugerenciaDiaria() {
+        return this.sugerenciaDiaria;
+    }
+
+    public Guardarropa setSugerenciaDiaria(Atuendo atuendo) {
+        this.sugerenciaDiaria = atuendo;
+        return this;
     }
 
     /**
