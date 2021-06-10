@@ -38,4 +38,8 @@ public class UsuariosRegistrados {
         return guardarropas;
     }
 
+
+    public List<String> getMails() {
+        return getUsuarios().stream().map(Usuario::getMail).collect(Collectors.toList());
+    }
 }

@@ -4,18 +4,24 @@ import java.util.List;
 import quemepongo.model.clima.AlertaClimatica;
 import quemepongo.repositories.AlertasPublicadas;
 import quemepongo.service.usuario.LauncherDeSugerenciaDiaria;
+import quemepongo.service.usuario.MailSender;
+import quemepongo.service.usuario.NotificationService;
 
 public class PublicadorDeAlertas {
 
     ServicioMetereologico serviceMetereologico = ServicioMetereologico.defaultService();
     AlertasPublicadas repositorio;
     LauncherDeSugerenciaDiaria sugerenciasLauncher;
+    NotificationService notificationService;
+    MailSender mailSender;
 
     public PublicadorDeAlertas(ServicioMetereologico serviceMetereologico,
-            AlertasPublicadas repositorio, LauncherDeSugerenciaDiaria sugerenciasLauncher) {
+            AlertasPublicadas repositorio, LauncherDeSugerenciaDiaria sugerenciasLauncher,
+            NotificationService notificationService, MailSender mailSender) {
         this.serviceMetereologico = serviceMetereologico;
         this.repositorio = repositorio;
         this.sugerenciasLauncher = sugerenciasLauncher;
+        this.notificationService = notificationService;
     }
 
     public ServicioMetereologico getServiceMetereologico() {
@@ -45,6 +51,7 @@ public class PublicadorDeAlertas {
 
     public PublicadorDeAlertas actualizarAlertas() {
         List<AlertaClimatica> alertas = getServiceMetereologico().getAlertas("Buenos Aires");
+        notificarAlertas(alertas);
         alertas.addAll(getRepositorio().getAlertas());
         actualizarSugerencias();
         return this;
@@ -54,4 +61,15 @@ public class PublicadorDeAlertas {
         getSugerenciasLauncher().sugerirAtuendos();
     }
 
+    private void notificarAlertas(List<AlertaClimatica> alertas) {
+        alertas.forEach(alerta -> alerta.notificar(notificationService));
+        enviarMailDeAlertas(alertas);
+    }
+
+    private void enviarMailDeAlertas(List<AlertaClimatica> alertas) {
+        alertas.forEach(alerta -> {
+            List<String> mails = getSugerenciasLauncher().getRepositorio().getMails();
+            mails.forEach(mail -> alerta.notificar(mailSender, mail));
+        });
+    }
 }

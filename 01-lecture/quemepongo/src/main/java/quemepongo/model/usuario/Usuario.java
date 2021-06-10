@@ -36,6 +36,21 @@ public class Usuario {
 
 
     /**
+     * Mail del usuario.
+     *
+     * @since Iteración VI
+     */
+    private String mail;
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    /**
      * Obtiene el guardarropas del criterio.
      *
      * @param criterio el criterio del guardarropas.
@@ -45,7 +60,6 @@ public class Usuario {
     public Guardarropa getGuardaropa(String criterio) {
         return misGuardarropas.get(criterio);
     }
-
 
     /**
      * Obtiene TODOS los guardarropas propios de un usuario.
