@@ -29,6 +29,7 @@ public class UsuariosRegistrados {
      * Obtiene todos los guardarropas de los usuarios
      *
      * @return listado de guardarropas
+     * @since Iteración VI
      */
     public List<Guardarropa> getAllGuardarropas() {
         List<Guardarropa> guardarropas = new ArrayList<Guardarropa>();
