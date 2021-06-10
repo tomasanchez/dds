@@ -1,16 +1,41 @@
 package quemepongo.model.clima;
 
+import quemepongo.service.usuario.NotificationService;
+
 public enum AlertaClimatica {
     /**
      * Alerta de tormenta.
      */
-    TORMENTA,
+    TORMENTA {
+        @Override
+        public void notificar(NotificationService service) {
+            service.notify("Se detectó una Tormenta");
+        }
+    },
     /**
      * Alerta de tormenta.
      */
-    GRANIZO,
+    GRANIZO {
+        @Override
+        public void notificar(NotificationService service) {
+            service.notify("Granizo!");
+        }
+    },
     /**
      * Alerta de nevadas.
      */
-    NEVADA;
+    NEVADA {
+        @Override
+        public void notificar(NotificationService service) {
+            service.notify("Nieve");
+        }
+    };
+
+    /**
+     * Notifica la alerta climatica.
+     *
+     * @param service el servicio de noticacion
+     * @since Iteración VI
+     */
+    public abstract void notificar(NotificationService service);
 }

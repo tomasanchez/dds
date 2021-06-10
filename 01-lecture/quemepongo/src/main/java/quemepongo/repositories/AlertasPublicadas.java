@@ -3,6 +3,7 @@ package quemepongo.repositories;
 import java.util.ArrayList;
 import java.util.List;
 import quemepongo.model.clima.AlertaClimatica;
+import quemepongo.service.usuario.NotificationService;
 
 /**
  * Repositorio de Usuario de Que me Pongo.
@@ -24,6 +25,15 @@ public class AlertasPublicadas {
     public AlertasPublicadas addAlerta(AlertaClimatica alerta) {
         getAlertas().add(alerta);
         return this;
+    }
+
+    /**
+     * Notifica todas las alertas registradas.
+     *
+     * @param service el servicio de notificacion
+     */
+    public void notificarAlertas(NotificationService service) {
+        getAlertas().forEach(alerta -> alerta.notificar(service));
     }
 
 }
