@@ -6,30 +6,40 @@ public enum AlertaClimatica {
     /**
      * Alerta de tormenta.
      */
-    TORMENTA {
+    TORMENTA("Se esperan Tormentas :: Lleve paraguas!") {
         @Override
         public void notificar(NotificationService service) {
-            service.notify("Se esperan Tormentas :: Lleve paraguas!");
+            service.notify(getMessage());
         }
     },
     /**
      * Alerta de tormenta.
      */
-    GRANIZO {
+    GRANIZO("Alerta de Granizo! :: Evite el uso de automóviles") {
         @Override
         public void notificar(NotificationService service) {
-            service.notify("Granizo!");
+            service.notify(getMessage());
         }
     },
     /**
      * Alerta de nevadas.
      */
-    NEVADA {
+    NEVADA("Se esperan nevadas!") {
         @Override
         public void notificar(NotificationService service) {
-            service.notify("Nieve");
+            service.notify(getMessage());
         }
     };
+
+    private final String MSG;
+
+    public String getMessage() {
+        return this.MSG;
+    }
+
+    AlertaClimatica(String msg) {
+        this.MSG = msg;
+    }
 
     /**
      * Notifica la alerta climatica.
