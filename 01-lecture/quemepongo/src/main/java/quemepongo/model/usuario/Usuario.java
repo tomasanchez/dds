@@ -1,12 +1,14 @@
 package quemepongo.model.usuario;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import quemepongo.excepcion.usuario.UsuarioSinAccesoAGuardarropaException;
 import quemepongo.model.prenda.Prenda;
 import quemepongo.model.usuario.guardarropa.Guardarropa;
-import quemepongo.model.usuario.guardarropa.TentativaAgregar;
 import quemepongo.model.usuario.guardarropa.Tentativa;
+import quemepongo.model.usuario.guardarropa.TentativaAgregar;
 import quemepongo.model.usuario.guardarropa.TentativaQuitar;
 
 /**
@@ -42,6 +44,17 @@ public class Usuario {
      */
     public Guardarropa getGuardaropa(String criterio) {
         return misGuardarropas.get(criterio);
+    }
+
+
+    /**
+     * Obtiene TODOS los guardarropas propios de un usuario.
+     *
+     * @return listado de guardarropas
+     * @since Iteración VI
+     */
+    public List<Guardarropa> getAllGuardarropas() {
+        return misGuardarropas.values().stream().collect(Collectors.toList());
     }
 
     /**
