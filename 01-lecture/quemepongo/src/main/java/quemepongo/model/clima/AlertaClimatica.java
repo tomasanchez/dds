@@ -9,7 +9,7 @@ public enum AlertaClimatica {
     TORMENTA {
         @Override
         public void notificar(NotificationService service) {
-            service.notify("Se detectó una Tormenta");
+            service.notify("Se esperan Tormentas :: Lleve paraguas!");
         }
     },
     /**
