@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/tomasanchez/dds/compare/v0.2.0...v0.3.0) (2021-06-11)
+
+
+### Features
+
+* **it-6:** add domain alerts ([518bc3f](https://github.com/tomasanchez/dds/commit/518bc3fee361f27fae45f83a3e74d0a58057f170))
+* **it-6:** add suggestions ([78ac0d8](https://github.com/tomasanchez/dds/commit/78ac0d8d0477c89ebf8a240317002206890100ba))
+* **it-6:** consulting and updating alerts ([4f71fb8](https://github.com/tomasanchez/dds/commit/4f71fb8d548de9c69b25ba8bff8575daad61e53c))
+* **it-6:** dayly suggestions for all users ([7381343](https://github.com/tomasanchez/dds/commit/73813430272e52fa30c15b1354ce13e665fa264f))
+* **it-6:** mail sending ([96c6edb](https://github.com/tomasanchez/dds/commit/96c6edbdc29efa056d351cf5ec52e99873c3e06e))
+* **it-6:** select executable actions ([5845b6a](https://github.com/tomasanchez/dds/commit/5845b6af9b27b6498e32e563a1a7cadf86a72c23))
+* **it-6:** umbrella recommendation ([f6f23ce](https://github.com/tomasanchez/dds/commit/f6f23cef43bbe51092aa68bdde3f71f36d6180b6))
+* **it-6:** update suggestion when alert detected ([ed4ab2f](https://github.com/tomasanchez/dds/commit/ed4ab2f3b76e8485bf6592adaabfece053feca8b))
+* add alerts support ([7eb2438](https://github.com/tomasanchez/dds/commit/7eb24385154273b64a53b72f9541b67b0e19388f))
+* add monedero ([00321e7](https://github.com/tomasanchez/dds/commit/00321e75cacff362b9e6543f9636c73ea35b39b2))
+* added filesystem ([166dadd](https://github.com/tomasanchez/dds/commit/166dadd05187bb02daf66b3a2a215a44acaebeb8))
+
 ## [0.2.0](https://github.com/tomasanchez/dds/compare/v0.1.0...v0.2.0) (2021-05-27)
 
 
