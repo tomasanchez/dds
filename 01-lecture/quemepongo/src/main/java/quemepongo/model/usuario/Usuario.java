@@ -1,11 +1,14 @@
 package quemepongo.model.usuario;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import quemepongo.excepcion.usuario.UsuarioSinAccesoAGuardarropaException;
 import quemepongo.model.prenda.Prenda;
+import quemepongo.model.usuario.accion.Accion;
 import quemepongo.model.usuario.guardarropa.Guardarropa;
 import quemepongo.model.usuario.guardarropa.Tentativa;
 import quemepongo.model.usuario.guardarropa.TentativaAgregar;
@@ -34,6 +37,13 @@ public class Usuario {
     private Map<Usuario, Map<String, Guardarropa>> guardarropasDeOtros =
             new HashMap<Usuario, Map<String, Guardarropa>>();
 
+    /**
+     * Acciones configurables del usuario.
+     *
+     * @since Iteración VI
+     */
+    private List<Accion> accionesConfigurables =
+            new ArrayList<Accion>(Arrays.asList(Accion.values())) {};
 
     /**
      * Mail del usuario.
@@ -48,6 +58,24 @@ public class Usuario {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public List<Accion> getAcciones() {
+        return accionesConfigurables;
+    }
+
+    public Usuario addAccion(Accion accion) {
+        getAcciones().add(accion);
+        return this;
+    }
+
+    public Usuario removeAccion(Accion accion) {
+        getAcciones().remove(accion);
+        return this;
+    }
+
+    public boolean aceptaAccion(Accion accion) {
+        return getAcciones().contains(accion);
     }
 
     /**

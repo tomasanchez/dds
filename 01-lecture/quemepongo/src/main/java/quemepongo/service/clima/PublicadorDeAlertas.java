@@ -68,7 +68,7 @@ public class PublicadorDeAlertas {
 
     private void enviarMailDeAlertas(List<AlertaClimatica> alertas) {
         alertas.forEach(alerta -> {
-            List<String> mails = getSugerenciasLauncher().getRepositorio().getMails();
+            List<String> mails = getSugerenciasLauncher().getRepositorio().getMailsIfSoporta();
             mails.forEach(mail -> alerta.notificar(mailSender, mail));
         });
     }

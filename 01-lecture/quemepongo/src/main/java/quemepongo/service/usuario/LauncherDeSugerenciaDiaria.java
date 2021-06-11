@@ -21,7 +21,7 @@ public class LauncherDeSugerenciaDiaria {
     }
 
     public LauncherDeSugerenciaDiaria sugerirAtuendos() {
-        repositorio.getAllGuardarropas().forEach(Guardarropa::sugerirAtuendo);
+        getRepositorio().getGuardarropasForRecalculo().forEach(Guardarropa::sugerirAtuendo);
         return this;
     }
 
