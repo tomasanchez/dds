@@ -174,6 +174,48 @@ Se podría obtener un la prenda creada con el ID asignado.
 - `500`: Para cualquier error del server
 - `503`: Servicio no disponible
 
+### Ver una prenda en particular que tengo en mi guardarropas para poder editarla
+
+`GET /users/:user/guardarropas/:guardarropa/prendas/:prenda`
+
+> REQUEST JSON
+
+Deberia el id de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
+
+```JSON
+{
+  "user": "admin",
+  "guardarropa": "dummy",
+  "prenda": "B003425032"
+}
+```
+
+> JSON RESPONSE
+
+Deberia devolver los datos de la prenda
+
+```JSON
+{
+  "prenda":  {
+      "_id": "B003425032",
+      "tipo": "SUPERIOR",
+      "color1": "#db644a",
+      "color2": "",
+      "material": "ALGODON",
+      "trama": "LISA"
+    }
+}
+```
+
+> HTTP Status Codes
+
+- `200`: Si logra obtener la prenda exitosamente.
+- `400`: Si falla la validacion del request
+- `401` / `403`: Si no tiene permisos para ver las prendas del guardarropas
+- `404`: Si no existe el usuario o guardarropas o prenda
+- `500`: Para cualquier error del server
+- `503`: Servicio no disponible
+
 ### Eliminar una prenda de mi guardarropas
 
 > Ruta _REST_
@@ -206,7 +248,7 @@ Podria ser un _empty body_
 - `200`: Si logra eliminar la prenda exitosamente.
 - `400`: Si falla la validacion del request
 - `401` / `403`: Si no tiene permisos para agregar prendas al guardarropas
-- `404`: Si no existe el usuario o guardarropas
+- `404`: Si no existe el usuario o guardarropas o guardarropa
 - `409`: Si hay algun conflicto con los datos de la prenda en el servidor
 - `500`: Para cualquier error del server
 - `503`: Servicio no disponible
