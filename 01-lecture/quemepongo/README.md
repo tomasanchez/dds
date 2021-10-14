@@ -124,4 +124,52 @@ Se debería obtener un _array_, con los datos de una `Prenda`.
 - `500`: Para cualquier error del server
 - `503`: Servicio no disponible
 
+### Crear una prenda desde el navegador
 
+> Ruta _REST_
+
+`POST /users/:user/guardarropas/:guardarropa/prendas/`
+
+> REQUEST JSON
+
+Deberia enviarse los datos de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
+
+```JSON
+{
+  "user": "admin",
+  "guardarropa": "dummy",
+  "data": {
+    "tipo": "SUPERIOR",
+    "color1": "#db644a",
+    "color2": "",
+    "material": "ALGODON",
+    "trama": "LISA"
+  }
+}
+```
+
+> JSON RESPONSE
+
+Se podría obtener un la prenda creada con el ID asignado.
+
+```JSON
+{
+  "prenda":  {
+      "_id": "B003425032",
+      "tipo": "SUPERIOR",
+      "color1": "#db644a",
+      "color2": "",
+      "material": "ALGODON",
+      "trama": "LISA"
+    }
+}
+```
+
+> HTTP Status Codes
+
+- `201`: Si logra crear la prenda exitosamente.
+- `400`: Si falla la validacion del request
+- `401` / `403`: Si no tiene permisos para agregar prendas al guardarropas
+- `404`: Si no existe el usuario o guardarropas
+- `500`: Para cualquier error del server
+- `503`: Servicio no disponible
