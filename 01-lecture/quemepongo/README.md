@@ -180,7 +180,7 @@ Se podría obtener un la prenda creada con el ID asignado.
 
 > REQUEST JSON
 
-Deberia el id de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
+Deberia enviarse el id de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
 
 ```JSON
 {
@@ -224,7 +224,7 @@ Deberia devolver los datos de la prenda
 
 > REQUEST JSON
 
-Deberia el id de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
+Deberia enviarse el id de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
 
 ```JSON
 {
@@ -250,5 +250,40 @@ Podria ser un _empty body_
 - `401` / `403`: Si no tiene permisos para agregar prendas al guardarropas
 - `404`: Si no existe el usuario o guardarropas o guardarropa
 - `409`: Si hay algun conflicto con los datos de la prenda en el servidor
+- `500`: Para cualquier error del server
+- `503`: Servicio no disponible
+
+### Ver mis eventos para administrarlos
+
+> Ruta _REST_
+
+`GET /users/:user/events`
+
+> REQUEST JSON
+
+Deberia enviarse mínimamente el usuario del cual obtener eventos
+
+```JSON
+{
+  "user": "admin"
+}
+```
+
+> RESPONSE JSON
+
+Deberia obtenerse un _array_ con los eventos.
+
+```JSON
+{
+  "result": []
+}
+```
+
+> HTTP Status Codes
+
+- `200`: Si se obtiene un array, incluso vacío.
+- `400`: Si falla la validacion del request
+- `401` / `403`: Si no tiene permisos para ver eventos
+- `404`: Si no existe el usuario
 - `500`: Para cualquier error del server
 - `503`: Servicio no disponible
