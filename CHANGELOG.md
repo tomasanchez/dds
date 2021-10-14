@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/tomasanchez/dds/compare/v0.3.0...v0.3.1) (2021-10-14)
+
+
+### Features
+
+* add ORM and Normalization ([e95d4a1](https://github.com/tomasanchez/dds/commit/e95d4a17c4d02c890aa9c1ebd4b37265b3aa8f33))
+* saved previous iteration ([fa47e07](https://github.com/tomasanchez/dds/commit/fa47e07942546e4360aac08b5a5cceb15a9c10e7))
+
 ## [0.3.0](https://github.com/tomasanchez/dds/compare/v0.2.0...v0.3.0) (2021-06-11)
 
 
