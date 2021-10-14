@@ -173,3 +173,40 @@ Se podría obtener un la prenda creada con el ID asignado.
 - `404`: Si no existe el usuario o guardarropas
 - `500`: Para cualquier error del server
 - `503`: Servicio no disponible
+
+### Eliminar una prenda de mi guardarropas
+
+> Ruta _REST_
+
+`DELETE /users/:user/guardarropas/:guardarropa/prendas/:prenda`
+
+> REQUEST JSON
+
+Deberia el id de la prenda, junto al guardarropas donde se agrega y el usuario que le crea.
+
+```JSON
+{
+  "user": "admin",
+  "guardarropa": "dummy",
+  "prenda": "B003425032"
+}
+```
+
+> RESPONSE JSON
+
+Podria ser un _empty body_
+
+```JSON
+{
+}
+```
+
+> HTTP Status Codes
+
+- `200`: Si logra eliminar la prenda exitosamente.
+- `400`: Si falla la validacion del request
+- `401` / `403`: Si no tiene permisos para agregar prendas al guardarropas
+- `404`: Si no existe el usuario o guardarropas
+- `409`: Si hay algun conflicto con los datos de la prenda en el servidor
+- `500`: Para cualquier error del server
+- `503`: Servicio no disponible
